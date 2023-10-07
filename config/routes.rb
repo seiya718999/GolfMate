@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   scope module: :public do
     root to: 'homes#top'
     resources :events, except: [:new]
@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       resources :comments, except: [:show, :index]
       resource :favorites, only: [:create, :destroy]
     end
-    resources :customers, only: [:show, :edit, :update] do
+    get 'posts/favorites', to: 'favorites#index'
+    resources :customers, only: [:index, :show, :edit, :update] do
       member do
         get 'confirm'
         patch 'withdrawal'
@@ -22,13 +23,13 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
     end
   end
-  
+
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
-  
+
+
   namespace :admin do
     root to: 'homes#top'
     resources :posts, only: [:show, :edit, :update, :destroy] do
@@ -36,10 +37,10 @@ Rails.application.routes.draw do
     end
     resources :customers, only: [:index, :show, :edit, :update]
   end
-  
+
   #検索用
   get 'customers/search' => 'search#customers_search'
   get 'posts/search' => 'search#posts_search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
 end
