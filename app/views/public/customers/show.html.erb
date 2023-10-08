@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 pt-5">
-      <h4>マイページ</h4>
+      <% if @customer.id == current_customer.id %>
+        <h4>マイページ</h4>
+      <% else %>
+        <h4>ユーザー</h4>
+      <% end %>
       <div>
         <%= link_to "編集", edit_customer_path(@customer.id) %>
       </div>
@@ -27,7 +31,7 @@
             プレースタイル
           </td>
           <td>
-            <%= @customer.play_style %>
+            <%= @customer.play_style_i18n %>
           </td>
         </tr>
       </table>
@@ -53,7 +57,7 @@
             性別
           </td>
           <td>
-            <%= @customer.gender %>
+            <%= @customer.gender_i18n %>
           </td>
         </tr>
         <tr>
