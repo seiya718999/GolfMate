@@ -1,9 +1,22 @@
 ja:
   enums:
-    order:
-      payment_method:
-        credit_card: "クレジットカード"
-        transfer: "銀行振込"
+    customer:
+      gender:
+        male: "男性"
+        female: "女性"
+        other: "その他"
+      play_style:
+        competitive: "競技志向"
+        moderately_serious: "ほどほど真剣"
+        want_to_improve: "上手くなりたい"
+        fun_is_enough: "楽しければOK"
+        for_health: "健康のために"
+    event:
+      schedule:
+        available: "空き"
+        practice: "練習"
+        golf: "ゴルフ"
+        other: "その他"
   activerecord:
     errors:
       messages:
@@ -21,7 +34,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -47,7 +60,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

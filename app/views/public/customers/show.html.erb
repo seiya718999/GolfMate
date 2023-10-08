@@ -1,6 +1,70 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 pt-5">
+      <h4>マイページ</h4>
+      <div>
+        <%= link_to "編集", edit_customer_path(@customer.id) %>
+      </div>
+      <table class="table mb-0">
+        <tr>
+          <td>
+            お名前
+          </td>
+          <td>
+            <%= @customer.last_name %>　<%= @customer.first_name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            メールアドレス
+          </td>
+          <td>
+            <%= @customer.email %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            プレースタイル
+          </td>
+          <td>
+            <%= @customer.play_style %>
+          </td>
+        </tr>
+      </table>
+      <table class="table table-borderless">
+        <tr>
+          <td>
+            平均スコア
+          </td>
+          <td>
+            <%= @customer.average_score %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            都道府県
+          </td>
+          <td>
+            <%= @customer.address %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            性別
+          </td>
+          <td>
+            <%= @customer.gender %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            自己紹介
+          </td>
+          <td>
+            <%= @customer.introduction %>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
