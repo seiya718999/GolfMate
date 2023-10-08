@@ -3,6 +3,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.all
+    
   end
 
   def show
@@ -10,4 +12,11 @@ class Public::PostsController < ApplicationController
 
   def edit
   end
+  
+  private
+
+  def post_params
+    params.require(:customer).permit(:last_name, :first_name)
+  end
+  
 end

@@ -1,2 +1,16 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 d-flex ml-auto mb-2 mt-1">
+      <%= render 'search/customer_form' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7 pt-5">
+      <h4>投稿一覧</h4>
+      <hr style="border-top: 1px solid #eee;">
+      <% @posts.each do |post| %>
+        <%= image_tag post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+      <% end %>
+    </div>
+  </div>
+</div>

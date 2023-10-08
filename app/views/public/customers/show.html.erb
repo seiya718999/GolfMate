@@ -2,9 +2,15 @@
   <div class="row">
     <div class="col-lg-10 pt-5">
       <% if @customer.id == current_customer.id %>
-        <h4>マイページ</h4>
+        <div class="d-flex align-items-center">
+          <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
+          <h4 class="ml-2">マイページ</h4>
+        </div>
       <% else %>
-        <h4>ユーザー</h4>
+        <div class="d-flex align-items-center">
+          <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
+          <h4 class="ml-2">ユーザー詳細</h4>
+        </div>
       <% end %>
       <div>
         <%= link_to "編集", edit_customer_path(@customer.id) %>
@@ -34,37 +40,35 @@
             <%= @customer.play_style_i18n %>
           </td>
         </tr>
-      </table>
-      <table class="table table-borderless">
-        <tr>
-          <td>
+        <tr class="border-0">
+          <td class="border-0">
             平均スコア
           </td>
-          <td>
+          <td class="border-0">
             <%= @customer.average_score %>
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr class="border-0">
+          <td class="border-0">
             都道府県
           </td>
-          <td>
+          <td class="border-0">
             <%= @customer.address %>
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr class="border-0">
+          <td class="border-0">
             性別
           </td>
-          <td>
+          <td class="border-0">
             <%= @customer.gender_i18n %>
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr class="border-0">
+          <td class="border-0">
             自己紹介
           </td>
-          <td>
+          <td class="border-0">
             <%= @customer.introduction %>
           </td>
         </tr>
