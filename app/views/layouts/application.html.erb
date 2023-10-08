@@ -40,7 +40,7 @@
                   </li>
                 <% else %>
                   <li class="nav-item">
-                    <%= link_to "マイページ", customers_my_page_path, class: "btn nav-link ml-2" %>
+                    <%= link_to "マイページ", customer_path(current_customer.id), class: "btn nav-link ml-2" %>
                   </li>
                   <li class="nav-item">
                     <%= link_to "投稿一覧", posts_path, class: "btn nav-link ml-2" %>
@@ -54,7 +54,7 @@
                 <% end %>
               <% elsif customer_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "マイページ", customers_my_page_path, class: "btn nav-link ml-2" %>
+                  <%= link_to "マイページ", customer_path(current_customer.id), class: "btn nav-link ml-2" %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "投稿一覧", posts_path, class: "btn nav-link ml-2" %>
