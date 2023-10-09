@@ -1,2 +1,33 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 pt-5">
+      <div>
+        <%= link_to customer_path(@post.customer) do %>
+          <%= image_tag @post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+        <% end %>
+        <%= @post.customer.last_name %>　<%= @post.customer.first_name %>　
+        <%= @post.created_at.strftime("%Y年%m月%d日") %><br>
+        
+        <%= @post.body %>
+        <% if post.get_post_image(100, 100) %>
+          <%= image_tag post.get_post_image(100, 100) %>
+        <% end %>
+        
+        <span>
+          <% if post.favorited_by?(current_customer) %>
+            <%= link_to post_favorites_path(post, favorite_id), method: :delete do %>
+              ♥<%= post.favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post), method: :post do %>
+              ♡<%= post.favorites.count %>
+            <% end %>
+          <% end %>
+          <%= link_to new_post_comment_path(post) do %>
+            コメント<%= post.comments.count %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
