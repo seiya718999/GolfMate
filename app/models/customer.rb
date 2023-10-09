@@ -5,6 +5,18 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image
+  has_many :favorites, dependent: :destroy
+  has_many :liked_posts, through: :favorites, source: :post
+  
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :active_relationships, source: :followed
+  
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
+  
+  has_many :events, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   enum gender: { male: 0, female: 1, other: 2 }
   enum play_style: {

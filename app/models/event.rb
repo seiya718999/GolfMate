@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
   
+  belongs_to :customer
+  
   enum schedule: {
     available: 0, 
     practice: 1, 
