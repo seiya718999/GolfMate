@@ -39,9 +39,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    whitelisted = params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :play_style, :average_score, :address, :gender, :introduction, :profile_image)
-    whitelisted[:gender] = whitelisted[:gender].to_i if whitelisted[:gender].present?
-    whitelisted
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :play_style, :average_score, :address, :gender, :introduction, :profile_image)
   end
   
 end

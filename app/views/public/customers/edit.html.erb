@@ -60,16 +60,16 @@
             </td>
             <td class="border-0">
               <span class="mr-2">
-                <%= f.radio_button :gender, 0, checked: @customer.gender == "male" %>
-                <%= f.label :gender_0, "男性" %>
+                <%= f.radio_button :gender, Customer.genders.key(0), checked: @customer.gender == "male" %>
+                <%= f.label :gender_male, Customer.genders_i18n[:male] %>
               </span>
               <span class="mr-2">
-                <%= f.radio_button :gender, 1, checked: @customer.gender == "female" %>
-                <%= f.label :gender_1, "女性" %>
+                <%= f.radio_button :gender, Customer.genders.key(1), checked: @customer.gender == "female" %>
+                <%= f.label :gender_female, Customer.genders_i18n[:female] %>
               </span>
               <span class="mr-2">
-                <%= f.radio_button :gender, 2, checked: @customer.gender == "other" %>
-                <%= f.label :gender_2, "その他" %>
+                <%= f.radio_button :gender, Customer.genders.key(2), checked: @customer.gender == "other" %>
+                <%= f.label :gender_other, Customer.genders_i18n[:other] %>
               </span>
             </td>
           </tr>
