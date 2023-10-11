@@ -46,16 +46,17 @@ class Customer < ApplicationRecord
     福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県
   ]
   
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Customer.where(name: content)
-    elsif method == 'forward'
-      Customer.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      Customer.where('name LIKE ?', '%' + content)
-    else
-      Customer.where('name LIKE ?', '%' + content + '%')
-    end
+  def self.search_for(content)
+    # 部分一致のLIKEクエリのパターンを作成
+    like_content = '%' + content + '%'
+  
+    # 各カラムで検索条件を作成
+    where_clause = %w[last_name first_name last_name_kana first_name_kana].map do |column_name|
+      "#{column_name} LIKE :like_content"
+    end.join(' OR ')
+  
+    # クエリ実行
+    Customer.where(where_clause, like_content: like_content)
   end
   
 end

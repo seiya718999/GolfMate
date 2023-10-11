@@ -1,2 +1,41 @@
-<h1>Public::Events#edit</h1>
-<p>Find me in app/views/public/events/edit.html.erb</p>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-10">
+      <%= form_with(model: @event, local: true) do |f| %>
+        <div class="time">
+          <div class="form-tag">日時</div>
+          <%= f.date_select :date %>
+        </div>
+        <div class="title">
+          <div class="form-tag">予定</div>
+          <span class="mr-2">
+            <%= f.radio_button :schedule, Event.schedules.key(0) %>
+            <%= f.label :schedule_available, Event.schedules_i18n[:available] %>
+          </span>
+          <span class="mr-2">
+            <%= f.radio_button :schedule, Event.schedules.key(1) %>
+            <%= f.label :schedule_practice, Event.schedules_i18n[:practice] %>
+          </span>
+          <span class="mr-2">
+            <%= f.radio_button :schedule, Event.schedules.key(2) %>
+            <%= f.label :schedule_golf, Event.schedules_i18n[:golf] %>
+          </span>
+          <span class="mr-2">
+            <%= f.radio_button :schedule, Event.schedules.key(3) %>
+            <%= f.label :schedule_other, Event.schedules_i18n[:other] %>
+          </span>
+        </div>
+      
+        <div class="content">
+          <div class="form-tag">詳細</div>
+          <%= f.text_field :description %>
+        </div>
+      
+        <div class="submit">
+          <%= f.submit %>
+        </div>
+      
+      <% end %>
+    </div>
+  </div>
+</div>
