@@ -76,7 +76,9 @@
           </td>
         </tr>
       </table>
-      <%= render "public/posts/index", posts: @posts %>
+      <% if @posts.present? %>
+        <%= render "public/posts/index", posts: @posts %>
+      <% end %>
     </div>
   </div>
 </div>
