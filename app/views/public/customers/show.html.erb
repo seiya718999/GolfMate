@@ -1,10 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-10 pt-5">
-      <% if @customer.id == current_customer.id %>
+      <% if current_customer && @customer.id == current_customer.id %>
         <div class="d-flex align-items-center">
           <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
           <h4 class="ml-2">マイページ</h4>
+        </div>
+        <div>
+          <%= link_to "編集", edit_customer_path(@customer.id) %>
         </div>
       <% else %>
         <div class="d-flex align-items-center">
@@ -12,9 +15,6 @@
           <h4 class="ml-2">ユーザー詳細</h4>
         </div>
       <% end %>
-      <div>
-        <%= link_to "編集", edit_customer_path(@customer.id) %>
-      </div>
       <table class="table mb-0">
         <tr>
           <td>
@@ -73,6 +73,7 @@
           </td>
         </tr>
       </table>
+      <%= render "public/posts/index", posts: @posts %>
     </div>
   </div>
 </div>

@@ -1,0 +1,13 @@
+<h5>本文</h5>
+<%= form_with model: post do |f| %>
+  <%= f.text_field :body %>
+
+  <p>画像</p>
+  <%= f.file_field :post_image, accept: "image/*" %>
+
+  <% if @post.body %>
+    <%= f.submit "変更を保存", class:"btn btn-success" %>
+  <% else %>
+    <%= f.submit "投稿する", class:"btn btn-success" %>
+  <% end %>
+<% end %>

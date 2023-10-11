@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 pt-5">
+      <h4>【<%= @content %>】が含まれる投稿<%= @records.count %>件</h4>
+      <%= render "public/posts/index", posts: @records %>
+    </div>
+  </div>
+</div>

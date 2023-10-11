@@ -17,16 +17,8 @@ class Post < ApplicationRecord
     favorites.where(customer_id: customer.id).exists?
   end
   
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Post.where(name: content)
-    elsif method == 'forward'
-      Post.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      Post.where('name LIKE ?', '%' + content)
-    else
-      Post.where('name LIKE ?', '%' + content + '%')
-    end
+  def self.search_for(content)
+    Post.where('body LIKE ?', '%' + content + '%')
   end
   
 end

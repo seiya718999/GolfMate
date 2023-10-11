@@ -7,7 +7,6 @@ class SearchController < ApplicationController
   end
   def posts_search
     @content = params[:content]
-    @method = params[:method]
-    @records = Post.search_for(@content, @method)
+    @records = Post.search_for(@content)
   end
 end

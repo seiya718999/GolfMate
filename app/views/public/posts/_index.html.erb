@@ -15,17 +15,22 @@
     <% end %>
     
     <span>
-      <% if post.favorited_by?(current_customer) %>
-        <%= link_to post_favorites_path(post, favorite_id), method: :delete do %>
-          ♥<%= post.favorites.count %>
+      <% if current_customer %> <!-- ユーザーがログインしている場合のみリンクの表示 -->
+        <% if post.favorited_by?(current_customer) %>
+          <%= link_to post_favorites_path(post, favorite_id), method: :delete do %>
+            ♥<%= post.favorites.count %>
+          <% end %>
+        <% else %>
+          <%= link_to post_favorites_path(post), method: :post do %>
+            ♡<%= post.favorites.count %>
+          <% end %>
+        <% end %>
+        <%= link_to new_post_comment_path(post) do %>
+          コメント<%= post.comments.count %>
         <% end %>
       <% else %>
-        <%= link_to post_favorites_path(post), method: :post do %>
-          ♡<%= post.favorites.count %>
-        <% end %>
-      <% end %>
-      <%= link_to new_post_comment_path(post) do %>
-        コメント<%= post.comments.count %>
+      　♡<%= post.favorites.count %>
+      　コメント<%= post.comments.count %>
       <% end %>
     </span>
   </div>

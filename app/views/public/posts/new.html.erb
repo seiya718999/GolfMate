@@ -3,15 +3,7 @@
     <div class="col-lg-6 pt-5">
       <h4>新規投稿</h4>
       <hr style="border-top: 1px solid #eee;">
-      <h5>本文</h5>
-      <%= form_with model: @post, url: posts_path do |f| %>
-        <%= f.text_field :body %>
-        
-        <p>画像</p>
-        <%= f.file_field :post_image, accept: "image/*" %>
-        
-        <%= f.submit "投稿する", class:"btn btn-success" %>
-      <% end %>
+      <%= render "form", post: @post%>
     </div>
   </div>
 </div>

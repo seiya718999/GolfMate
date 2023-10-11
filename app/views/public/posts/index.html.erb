@@ -6,8 +6,7 @@
   </div>
   <div class="row">
     <div class="col-lg-7 pt-5">
-      <h4>投稿一覧</h4>
-      <%= link_to "新規投稿", new_post_path, class:"btn btn-success" %>
+      <h4>投稿一覧</h4><%= render 'post_new' %>
       <%= render 'index', posts: @posts %>
     </div>
   </div>
