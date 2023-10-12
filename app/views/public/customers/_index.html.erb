@@ -5,6 +5,7 @@
         <%= link_to customer_path(customer.id) do %>
           <%= image_tag customer.get_profile_image(80, 80) %>
           <%= customer.last_name %><%= customer.first_name %>
+          <%= render "public/relationships/follow_btn", customer: customer%>
         <% end %>
       </td>
     </tr>

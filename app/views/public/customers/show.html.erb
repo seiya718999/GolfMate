@@ -12,10 +12,14 @@
         <%= link_to posts_favorites_path do %>
             いいね一覧
         <% end %>
+        <%= link_to customer_followings_path(current_customer) do %>
+            フォロー一覧
+        <% end %>
       <% else %>
         <div class="d-flex align-items-center">
           <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
           <h4 class="ml-2">ユーザー詳細</h4>
+          <%= render "public/relationships/follow_btn", customer: @customer%>
         </div>
       <% end %>
       <%= link_to events_path do %>

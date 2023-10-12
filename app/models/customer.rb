@@ -59,4 +59,7 @@ class Customer < ApplicationRecord
     Customer.where(where_clause, like_content: like_content)
   end
   
+  def following?(customer)
+    followings.include?(customer)
+  end
 end
