@@ -12,12 +12,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    get 'posts/favorites', to: 'favorites#index'
     resources :events, except: [:new]
     resources :posts do
       resources :comments, except: [:show, :index]
       resource :favorites, only: [:create, :destroy]
     end
-    get 'posts/favorites', to: 'favorites#index'
     resources :customers, only: [:index, :show, :edit, :update] do
       member do
         get 'confirm'

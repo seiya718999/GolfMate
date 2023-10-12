@@ -9,6 +9,9 @@
         <div>
           <%= link_to "編集", edit_customer_path(@customer.id) %>
         </div>
+        <%= link_to posts_favorites_path do %>
+            いいね一覧
+        <% end %>
       <% else %>
         <div class="d-flex align-items-center">
           <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>

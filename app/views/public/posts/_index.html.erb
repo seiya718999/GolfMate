@@ -18,7 +18,7 @@
       <span>
         <% if current_customer %> <!-- ユーザーがログインしている場合のみリンクの表示 -->
           <% if post.favorited_by?(current_customer) %>
-            <%= link_to post_favorites_path(post, favorite_id), method: :delete do %>
+            <%= link_to post_favorites_path(post), method: :delete do %>
               ♥<%= post.favorites.count %>
             <% end %>
           <% else %>
@@ -36,6 +36,4 @@
       </span>
     </div>
   <% end %>
-<% else %>
-  <p>No posts available</p>
 <% end %>
