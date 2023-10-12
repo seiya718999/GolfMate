@@ -1,2 +1,9 @@
-<h1>Public::Comments#new</h1>
-<p>Find me in app/views/public/comments/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7 pt-5">
+      <h4>新規コメント</h4>
+      <hr style="border-top: 1px solid #eee;">
+      <%= render "form", comment: @comment, post: @post%>
+    </div>
+  </div>
+</div>

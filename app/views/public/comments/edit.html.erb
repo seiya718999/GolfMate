@@ -1,2 +1,13 @@
-<h1>Public::Comments#edit</h1>
-<p>Find me in app/views/public/comments/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7 pt-5">
+      <h4>コメント編集</h4>
+      <hr style="border-top: 1px solid #eee;">
+      <h5>本文</h5>
+        <%= form_with model: @comment, url: post_comment_path(@post.id, @comment) do |f| %>
+          <%= f.text_area :body, style: 'width: 70%; height: 200px; resize: none;' %>
+          <%= f.submit "変更を保存", class:"btn btn-success" %>
+        <% end %>
+    </div>
+  </div>
+</div>

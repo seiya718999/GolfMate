@@ -1,0 +1,11 @@
+<h5>本文</h5>
+<%= form_with model: comment, url: post_comments_path(post) do |f| %>
+  <%= f.text_area :body, style: 'width: 70%; height: 200px; resize: none;' %>
+
+
+  <% if comment.body %>
+    <%= f.submit "変更を保存", class:"btn btn-success" %>
+  <% else %>
+    <%= f.submit "コメントする", class:"btn btn-success" %>
+  <% end %>
+<% end %>
