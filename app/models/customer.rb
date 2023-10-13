@@ -54,12 +54,21 @@ class Customer < ApplicationRecord
     where_clause = %w[last_name first_name last_name_kana first_name_kana].map do |column_name|
       "#{column_name} LIKE :like_content"
     end.join(' OR ')
-  
-    # クエリ実行
     Customer.where(where_clause, like_content: like_content)
   end
   
   def following?(customer)
     followings.include?(customer)
   end
+  
+  #ゲストログイン用
+  GUEST_USER_EMAIL = "guest@example.com"
+  
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "guestuser"
+    end
+  end
+  
 end

@@ -28,6 +28,11 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
     end
   end
+  
+  #ゲストログイン用
+  devise_scope :public do
+    post "customers/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
