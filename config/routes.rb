@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   
 
+  namespace :admin do
+    get 'search/customers_search'
+    get 'search/posts_search'
+  end
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
