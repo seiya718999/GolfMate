@@ -19,6 +19,9 @@
       <% end %>
       
       <%= render "public/shared/links" %>
+      <div class="row">
+        <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "", method: :post %>
+      </div>
     </div>
   </div>
 </div>
