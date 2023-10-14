@@ -1,2 +1,13 @@
-<h1>Admin::Search#posts_search</h1>
-<p>Find me in app/views/admin/search/posts_search.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 d-flex ml-auto mb-2 mt-1">
+      <%= render 'admin/search/post_form' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 pt-5">
+      <h4>【<%= @content %>】が含まれる投稿<%= @records.count %>件</h4>
+      <%= render "admin/homes/index", posts: @records %>
+    </div>
+  </div>
+</div>

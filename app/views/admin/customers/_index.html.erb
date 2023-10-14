@@ -1,0 +1,18 @@
+<table class="table">
+  <% customers.each do |customer| %>
+    <tr>
+      <td>
+        <%= link_to admin_customer_path(customer.id) do %>
+          <%= image_tag customer.get_profile_image(80, 80) %>
+          <%= customer.last_name %><%= customer.first_name %>
+        <% end %>
+        <% if customer.is_deleted == false %>
+          <span class="text-success">有効</span>
+        <% end %>
+        <% if customer.is_deleted == true %>
+          <span class="text-danger">退会</span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

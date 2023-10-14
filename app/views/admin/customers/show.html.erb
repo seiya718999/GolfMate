@@ -1,2 +1,73 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 pt-5">
+      <div class="d-flex align-items-center">
+        <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
+        <h4 class="ml-2">ユーザー詳細</h4>
+      </div>
+      <div>
+        <%= link_to "編集", edit_admin_customer_path(@customer.id) %>
+      </div>
+
+      <table class="table mb-0">
+        <tr>
+          <td>
+            お名前
+          </td>
+          <td>
+            <%= @customer.last_name %>　<%= @customer.first_name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            メールアドレス
+          </td>
+          <td>
+            <%= @customer.email %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            プレースタイル
+          </td>
+          <td>
+            <%= @customer.play_style_i18n %>
+          </td>
+        </tr>
+        <tr class="border-0">
+          <td class="border-0">
+            平均スコア
+          </td>
+          <td class="border-0">
+            <%= @customer.average_score %>
+          </td>
+        </tr>
+        <tr class="border-0">
+          <td class="border-0">
+            都道府県
+          </td>
+          <td class="border-0">
+            <%= @customer.address %>
+          </td>
+        </tr>
+        <tr class="border-0">
+          <td class="border-0">
+            性別
+          </td>
+          <td class="border-0">
+            <%= @customer.gender_i18n %>
+          </td>
+        </tr>
+        <tr class="border-0">
+          <td class="border-0">
+            自己紹介
+          </td>
+          <td class="border-0">
+            <%= @customer.introduction %>
+          </td>
+        </tr>
+      </table>
+      <%= render "admin/homes/index", posts: @posts %>
+    </div>
+  </div>
+</div>

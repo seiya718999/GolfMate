@@ -1,2 +1,116 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 pt-5">
+      <h4>会員情報編集</h4>
+      <%= form_with model: @customer, url: admin_customer_path do |f| %>
+        <table class="table mb-0">
+          <tr>
+            <td>
+              お名前　必須
+            </td>
+            <td>
+              <%= f.text_field :last_name, autofocus: true, placeholder: "姓" %>
+              <%= f.text_field :first_name, placeholder: "名" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              お名前（かな）　必須
+            </td>
+            <td>
+              <%= f.text_field :last_name_kana, autofocus: true, placeholder: "せい" %>
+              <%= f.text_field :first_name_kana, placeholder: "めい" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              メールアドレス　必須
+            </td>
+            <td>
+              <%= f.text_field :email, placeholder: "sample@example.com" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              プレースタイル
+            </td>
+            <td>
+              <%= f.select :play_style, {"" => nil}.merge(Customer.play_styles_i18n.invert) %>
+            </td>
+          </tr>
+          <tr class="border-0">
+            <td class="border-0">
+              平均スコア（半角数字で入力）
+            </td>
+            <td class="border-0">
+              <%= f.text_field :average_score, placeholder: "100" %>
+            </td>
+          </tr>
+          <tr class="border-0">
+            <td class="border-0">
+              主に活動する都道府県
+            </td>
+            <td class="border-0">
+              <%= f.select :address, Customer::PREFECTURES, prompt: '都道府県' %>
+            </td>
+          </tr>
+          <tr class="border-0">
+            <td class="border-0">
+              性別
+            </td>
+            <td class="border-0">
+              <span class="mr-2">
+                <%= f.radio_button :gender, Customer.genders.key(0), checked: @customer.gender == "male" %>
+                <%= f.label :gender_male, Customer.genders_i18n[:male] %>
+              </span>
+              <span class="mr-2">
+                <%= f.radio_button :gender, Customer.genders.key(1), checked: @customer.gender == "female" %>
+                <%= f.label :gender_female, Customer.genders_i18n[:female] %>
+              </span>
+              <span class="mr-2">
+                <%= f.radio_button :gender, Customer.genders.key(2), checked: @customer.gender == "other" %>
+                <%= f.label :gender_other, Customer.genders_i18n[:other] %>
+              </span>
+            </td>
+          </tr>
+          <tr class="border-0">
+            <td class="border-0">
+              自己紹介
+            </td>
+            <td class="border-0">
+              <%= f.text_area :introduction, style: 'width: 100%; height: 200px;' %>
+            </td>
+          </tr>
+          <tr class="border-0">
+            <td class="border-0">
+              プロフィール画像
+            </td>
+            <td class="border-0">
+              <%= f.file_field :profile_image, accept: "image/*" %>
+            </td>
+          </tr>
+          <tr class="border-0">
+            <td class="border-0">
+              会員ステータス
+            </td>
+            <td class="border-0">
+              <span class="mr-2">
+                <%= f.radio_button :is_deleted, false, checked: @customer.is_deleted == false %>
+                <%= f.label :is_deleted_false, "有効" %>
+              </span>
+              <span class="mr-2">
+                <%= f.radio_button :is_deleted, true, checked: @customer.is_deleted == true %>
+                <%= f.label :is_deleted_true, "退会" %>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.submit "変更を保存", class:"btn btn-success" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
