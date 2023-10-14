@@ -1,4 +1,5 @@
 class Public::EventsController < ApplicationController
+  before_action :authenticate_customer!, only: [:edit, :create, :update, :destroy]
   def index
     @events = Event.all
     @event = Event.new

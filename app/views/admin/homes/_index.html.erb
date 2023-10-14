@@ -1,0 +1,24 @@
+<% if posts.present? %>
+  <% posts.each do |post| %>
+    <hr style="border-top: 1px solid #eee;">
+    <div>
+      <%= link_to admin_customer_path(post.customer) do %>
+        <%= image_tag post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+        <%= post.customer.last_name %>　<%= post.customer.first_name %>
+      <% end %>
+      <%= post.created_at.strftime("%Y年%m月%d日") %><br>
+
+      <%= link_to admin_post_path(post), class: 'custom-black-link' do %>
+        <%= post.body %>
+        <% if post.get_post_image(100, 100) %>
+          <%= image_tag post.get_post_image(100, 100) %>
+        <% end %>
+      <% end %>
+
+      <span>
+        ♡<%= post.favorites.count %>
+        コメント<%= post.comments.count %>
+      </span>
+    </div>
+  <% end %>
+<% end %>

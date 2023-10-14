@@ -1,0 +1,19 @@
+<% comments.each_with_index do |comment, index| %>
+  <% if index == 0 %>
+    <div class="pb-3"><strong>コメント一覧</strong></div>
+  <% end %>
+  <%= link_to admin_customer_path(comment.customer) do %>
+    <%= image_tag comment.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+  <% end %>
+  <%= comment.customer.last_name %>　<%= comment.customer.first_name %>　
+  <%= comment.created_at.strftime("%Y年%m月%d日") %><br>
+  <%= comment.body %>
+  
+  <%= link_to edit_admin_post_comment_path(comment.post_id, comment.id) do %>
+    コメントを編集
+  <% end %>
+  <%= link_to admin_post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: '本当に削除しますか?' } do %>
+    コメントを削除
+  <% end %>
+  <hr style="border-top: 1px solid #eee;">
+<% end %>

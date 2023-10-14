@@ -1,2 +1,15 @@
-<h1>Admin::Posts#edit</h1>
-<p>Find me in app/views/admin/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 pt-5">
+      <h4>投稿編集</h4>
+      <hr style="border-top: 1px solid #eee;">
+      <h5>本文</h5>
+        <%= form_with model: @post, url: admin_post_path do |f| %>
+          <%= f.text_field :body %>
+          <p>画像</p>
+          <%= f.file_field :post_image, accept: "image/*" %>
+          <%= f.submit "変更を保存", class:"btn btn-success" %>
+        <% end %>
+    </div>
+  </div>
+</div>

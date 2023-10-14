@@ -1,2 +1,32 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 d-flex ml-auto mb-2 mt-1">
+      <%= render 'search/post_form' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 pt-5 border-b">
+      <%= link_to admin_customer_path(@post.customer) do %>
+        <%= image_tag @post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+      <% end %>
+      <%= @post.customer.last_name %>　<%= @post.customer.first_name %>
+      <%= @post.created_at.strftime("%Y年%m月%d日") %><br>
+
+      <%= @post.body %>
+      <% if @post.get_post_image(100, 100) %>
+        <%= image_tag post.get_post_image(100, 100) %>
+      <% end %>
+      <span>
+        ♡<%= @post.favorites.count %>
+        コメント<%= @post.comments.count %>
+      </span>
+      <%= link_to "編集", edit_admin_post_path(@post.id) %>
+      <%= link_to "投稿を削除", admin_post_path(@post.id), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mb-2 mt-1">
+      <%= render "admin/comments/index", comments: @comments %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,13 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 d-flex ml-auto mb-2 mt-1">
+      <%= render 'search/post_form' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7 pt-5">
+      <h4>投稿一覧</h4>
+      <%= render 'index', posts: @posts %>
+    </div>
+  </div>
+</div>

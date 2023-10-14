@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  #検索用
-  get 'customers/search' => 'search#customers_search'
-  get 'posts/search' => 'search#posts_search'
+  
 
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
@@ -15,6 +13,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    get 'customers/search' => 'search#customers_search'
+    get 'posts/search' => 'search#posts_search'
     get 'posts/favorites', to: 'favorites#index'
     resources :events, except: [:new]
     resources :posts do
@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
+    get 'customers/search' => 'search#customers_search'
+    get 'posts/search' => 'search#posts_search'
     resources :posts, only: [:show, :edit, :update, :destroy] do
       resources :comments, only: [:edit, :update, :destroy]
     end

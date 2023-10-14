@@ -4,8 +4,8 @@
     <div>
       <%= link_to customer_path(post.customer) do %>
         <%= image_tag post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+        <%= post.customer.last_name %>　<%= post.customer.first_name %>
       <% end %>
-      <%= post.customer.last_name %>　<%= post.customer.first_name %>　
       <%= post.created_at.strftime("%Y年%m月%d日") %><br>
       
       <%= link_to post_path(post), class: 'custom-black-link' do %>
