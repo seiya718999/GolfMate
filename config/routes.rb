@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  
-
-  namespace :admin do
-    get 'search/customers_search'
-    get 'search/posts_search'
-  end
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -20,6 +14,7 @@ Rails.application.routes.draw do
     get 'customers/search' => 'search#customers_search'
     get 'posts/search' => 'search#posts_search'
     get 'posts/favorites', to: 'favorites#index'
+    resources :golf_courses, only: [:index, :show]
     resources :events, except: [:new]
     resources :posts do
       resources :comments, except: [:show, :index]

@@ -63,6 +63,7 @@ group :production do
   gem 'mysql2'
 end
 gem 'simple_calendar', '~> 2.0'
+gem 'httparty'
 
 gem "net-smtp"
 gem "net-pop"
