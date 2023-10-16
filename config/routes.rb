@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'groups/new'
-    get 'groups/index'
-    get 'groups/show'
-    get 'groups/edit'
-  end
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -21,6 +15,7 @@ Rails.application.routes.draw do
     get 'posts/search' => 'search#posts_search'
     get 'posts/favorites', to: 'favorites#index'
     resources :golf_courses, only: [:index, :show]
+    resources :groups, except: [:destroy]
     resources :posts do
       resources :comments, except: [:show, :index]
       resource :favorites, only: [:create, :destroy]
@@ -30,6 +25,7 @@ Rails.application.routes.draw do
         get 'confirm'
         patch 'withdrawal'
       end
+      resources :group_customers, only: [:create, :destroy]
       resources :events, except: [:new]
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

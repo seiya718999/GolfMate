@@ -15,10 +15,13 @@
             いいね一覧
         <% end %>
         <%= link_to customer_followings_path(current_customer) do %>
-            フォロー一覧
+            フォロー
         <% end %>
         <%= link_to customer_followers_path(current_customer) do %>
-            フォロワー一覧
+            フォロワー
+        <% end %>
+        <%= link_to groups_path do %>
+            グループ
         <% end %>
       <% else %>
         <div class="d-flex align-items-center">
