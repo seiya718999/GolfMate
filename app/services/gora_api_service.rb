@@ -21,10 +21,8 @@ class GoraApiService
 
     response = self.class.get("", query: query_params)
 
-    if response.success?
+    
       return response.parsed_response
-    else
-      raise StandardError, "APIリクエストが失敗しました: #{response.code}"
-    end
+    
   end
 end

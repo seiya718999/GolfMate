@@ -10,3 +10,19 @@
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
+.carousel-image {
+  max-width: 50%;
+  margin: 0 auto;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item img {
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    height: 400px;
+    object-fit: cover;
+    margin: 0 auto;
+}

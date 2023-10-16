@@ -1,5 +1,4 @@
 class Public::GolfCoursesController < ApplicationController
-  before_action :set_api_key
   
   def index
     @selected_sort = params[:sort]
@@ -27,6 +26,11 @@ class Public::GolfCoursesController < ApplicationController
     api = GoraApiService.new(api_key)
 
     response = api.search_golf_courses(keyword, area_code, sort_option)
+    
+    if response['error'] == 'not_found'
+      flash[:alert] = '該当するゴルフ場はありません'
+      redirect_to golf_courses_path and return
+    end
     @results = response['Items'].map { |item| item['Item'] }
   end
   
@@ -42,15 +46,6 @@ class Public::GolfCoursesController < ApplicationController
 
     unless @golf_course_detail["Item"]
       redirect_to root_path, alert: "指定されたゴルフ場の詳細情報は取得できませんでした。"
-    end
-  end
-  
-  private
-  
-  def set_api_key
-    api_key = ENV['GORA_API_KEY']
-    unless api_key
-      redirect_to root_path, alert: "APIキーの取得に失敗しました。"
     end
   end
   

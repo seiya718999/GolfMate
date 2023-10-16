@@ -2,28 +2,27 @@
   <div class="row">
     <div class="col-md-10">
       <h1 class="mb-4">ゴルフ場検索</h1>
-      
-      <%= form_tag('/golf_courses/search', method: 'get', class: 'mb-4') do %>
+
+      <%= form_tag('/golf_courses', method: 'get', class: 'mb-4') do %>
         <div class="mb-3">
           <%= label_tag 'keyword', 'キーワード' %>
           <%= text_field_tag 'keyword', params[:keyword], class: 'form-control' %>
         </div>
 
         <div class="mb-3">
-          <%= label_tag 'areaCode', 'エリア' %>
-          <%= select_tag 'areaCode', options_for_select(@area_codes, params[:areaCode].to_i), class: 'form-control' %>
+          <%= label_tag 'area_code', 'エリア' %>
+          <%= select_tag 'area_code', options_for_select(@area_codes, params[:area_code].to_i), class: 'form-control' %>
         </div>
 
         <div class="mb-3">
           <%= label_tag 'sort', '並び順' %>
           <%= select_tag 'sort', options_for_select(@sort_options, params[:sort]), class: 'form-control' %>
         </div>
-        
+
         <%= submit_tag '検索', class: 'btn btn-primary' %>
       <% end %>
 
       <% if @results %>
-        <h2 class="mb-4">ゴルフ場検索結果</h2>
         <% if @results.present? %>
           <div class="row">
             <% @results.each do |result| %>
