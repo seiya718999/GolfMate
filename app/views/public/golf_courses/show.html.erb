@@ -1,7 +1,52 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h1><%= @golf_course_detail["Item"]["golfCourseName"] %></h1>
+      <div class="golf-course-detail">
+        <h1><%= @item["golfCourseName"] %></h1>
+        <div class="golf-course-images">
+          <img src="<%= @item["golfCourseImageUrl1"] %>" alt="Image 1">
+          <img src="<%= @item["golfCourseImageUrl2"] %>" alt="Image 2">
+          <img src="<%= @item["golfCourseImageUrl3"] %>" alt="Image 3">
+          <img src="<%= @item["golfCourseImageUrl4"] %>" alt="Image 4">
+          <img src="<%= @item["golfCourseImageUrl5"] %>" alt="Image 5">
+        </div>
+      
+        <p><strong>キャプション:</strong> <%= @item["golfCourseCaption"] %></p>
+        
+        <h2>基本情報</h2>
+        <ul>
+          <li><strong>アクセス:</strong> <%= @item["highway"] %> <%= @item["ic"] %>から約<%= @item["icDistance"] %></li>
+          <li><strong>住所:</strong> <%= @item["postalCode"] %> <%= @item["address"] %></li>
+          <li><strong>電話:</strong> <%= @item["telephoneNo"] %></li>
+          <li><strong>設計者:</strong> <%= @item["designer"] %></li>
+          <li><strong>コースタイプ:</strong> <%= @item["courseType"] %></li>
+          <li><strong>グリーン:</strong> <%= @item["green"] %></li>
+          <li><strong>ホール数:</strong> <%= @item["holeCount"] %></li>
+          <li><strong>距離:</strong> <%= @item["courseDistance"] %></li>
+        </ul>
+      
+        <h2>詳細情報</h2>
+        <pre><%= @item["information"] %></pre>
+      
+        <h2>利用者の評価</h2>
+        <ul>
+          <li><strong>評価:</strong> <%= @item["evaluation"] %> / 5.0</li>
+          <li><strong>スタッフ:</strong> <%= @item["staff"] %> / 5.0</li>
+          <li><strong>施設:</strong> <%= @item["facility"] %> / 5.0</li>
+          <li><strong>食事:</strong> <%= @item["meal"] %> / 5.0</li>
+          <li><strong>コース:</strong> <%= @item["course"] %> / 5.0</li>
+          <li><strong>コストパフォーマンス:</strong> <%= @item["costperformance"] %> / 5.0</li>
+          <li><strong>距離:</strong> <%= @item["distance"] %> / 5.0</li>
+          <li><strong>フェアウェイ:</strong> <%= @item["fairway"] %> / 5.0</li>
+        </ul>
+      
+        <div class="golf-course-links">
+          <a href="<%= @item["reserveCalUrl"] %>">予約する</a>
+          <a href="<%= @item["voiceUrl"] %>">利用者の声</a>
+          <a href="<%= @item["layoutUrl"] %>">コースレイアウト</a>
+          <a href="<%= @item["routeMapUrl"] %>">アクセスマップ</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
