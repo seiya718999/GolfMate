@@ -43,6 +43,18 @@
                   <%= link_to "マイページ", customer_path(current_customer.id), class: "btn nav-link ml-2" %>
                 </li>
                 <li class="nav-item">
+                  <%= link_to notifications_path, class: "btn nav-link ml-2" do %>
+                    <% if unchecked_notifications.any? %>
+                      <span class="fa-stack">
+                        <i class="far fa-bell fa-lg"></i>
+                        <i class="fas fa-circle n-circle fa-stack-1x"></i>
+                      </span>
+                    <% else %>
+                      <i class="far fa-bell fa-lg"></i>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li class="nav-item">
                   <%= link_to "ゴルフ場検索", golf_courses_path, class: "btn nav-link ml-2" %>
                 </li>
                 <li class="nav-item">

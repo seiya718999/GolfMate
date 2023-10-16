@@ -23,7 +23,7 @@
             </span>
           <% end %>
           <%= "にコメントしました" %>
-          <p class="text-muted mb-0"><%= Comment.find_by(id: notification.comment_id)&.comment %></p>
+          <p class="text-muted mb-0"><%= Comment.find_by(id: notification.comment_id)&.body %></p>
       <% end %>
     </span>
   </div>
