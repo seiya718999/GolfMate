@@ -18,6 +18,8 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   
+  has_many :group_custmers, dependent: :destroy
+  
   enum gender: { male: 0, female: 1, other: 2 }
   enum play_style: {
     competitive: 0, 
