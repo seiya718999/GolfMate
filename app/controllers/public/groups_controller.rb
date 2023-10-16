@@ -6,29 +6,35 @@ class Public::GroupsController < ApplicationController
   end
 
   def index
-    @book = Book.new
-    @groups = Group.all
+    @groups = current_customer.groups
   end
 
   def show
-    @book = Book.new
     @group = Group.find(params[:id])
+    @customers = @group.customers
   end
   
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to groups_path
+      group_customer = current_customer.group_customers.create(group_id: @group.id)
+      if group_customer.persisted?
+        redirect_to groups_path
+      else
+        @group.destroy
+        render 'new'
+      end
     else
       render 'new'
     end
-
   end
 
   def edit
+    @group = Group.find(params[:id])
   end
 
   def update
+    @group = Group.find(params[:id])
     if @group.update(group_params)
       redirect_to groups_path
     else

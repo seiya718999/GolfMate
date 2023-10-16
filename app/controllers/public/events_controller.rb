@@ -1,7 +1,7 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_customer!, only: [:edit, :create, :update, :destroy]
   def index
-    @customer = current_customer
+    @customer = Customer.find(params[:customer_id])
     @events = @customer.events
     @event = Event.new
   end

@@ -1,2 +1,23 @@
-<h1>Public::Groups#index</h1>
-<p>Find me in app/views/public/groups/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 pt-5">
+      
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4>参加グループ一覧</h4>
+        <%= link_to "グループを作る", new_group_path, class: "btn btn-primary" %>
+      </div>
+      
+      <% if @groups.present? %>
+        <div class="list-group">
+          <% @groups.each do |group| %>
+            <%= link_to group.name, group_path(group), class: "list-group-item list-group-item-action" %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="alert alert-info mt-4">
+          まだ参加しているグループはありません
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
