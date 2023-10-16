@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'customers/search' => 'search#customers_search'
     get 'posts/search' => 'search#posts_search'
     get 'posts/favorites', to: 'favorites#index'
+    resources :notifications, only: :index
     resources :golf_courses, only: [:index, :show]
     resources :groups, except: [:destroy]
     resources :posts do

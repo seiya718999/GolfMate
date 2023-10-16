@@ -21,6 +21,9 @@ class Customer < ApplicationRecord
   has_many :group_customers, dependent: :destroy
   has_many :groups, through: :group_customers, source: :group
   
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  
   enum gender: { male: 0, female: 1, other: 2 }
   enum play_style: {
     competitive: 0, 
@@ -79,6 +82,17 @@ class Customer < ApplicationRecord
   
   def guest_customer?
     email == GUEST_USER_EMAIL
+  end
+  
+  def create_notification_follow!(current_customer)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_customer.id, id, 'follow'])
+    if temp.blank?
+      notification = current_customer.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
   
 end

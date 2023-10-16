@@ -8,8 +8,10 @@ class Public::CommentsController < ApplicationController
   def create
     @comment = current_customer.comments.new(comment_params)
     @comment.post_id = params[:post_id]
+    @post = Post.find(params[:post_id])
     if @comment.save
       flash[:notice] = "コメントしました。"
+      @post.create_notification_comment!(current_customer, @comment.id)
       redirect_to post_path(@comment.post_id)
     else
       render :new

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 d-flex ml-auto mb-2 mt-1">
-      <%= render 'search/post_form' %>
+      <%= render 'public/search/post_form' %>
     </div>
   </div>
   <div class="row">
@@ -14,7 +14,7 @@
 
       <%= @post.body %>
       <% if @post.get_post_image(100, 100) %>
-        <%= image_tag post.get_post_image(100, 100) %>
+        <%= image_tag @post.get_post_image(100, 100) %>
       <% end %>
 
       <span>
