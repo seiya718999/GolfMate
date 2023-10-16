@@ -1,19 +1,23 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_customer!, only: [:edit, :create, :update, :destroy]
   def index
-    @events = Event.all
+    @customer = current_customer
+    @events = @customer.events
     @event = Event.new
   end
 
   def show
     @event = Event.find(params[:id])
+    unless @event.customer_id == current_customer.id
+      redirect_to request.referrer || root_path
+    end
   end
   
   def create
     @event = Event.new(event_params)
     @event.customer_id = current_customer.id
     @event.save
-    redirect_to events_path
+    redirect_to customer_events_path
   end
 
   def edit
@@ -23,7 +27,7 @@ class Public::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to events_path
+      redirect_to customer_events_path
       flash[:notice] = "予定を更新しました"
     else
       render 'edit'
@@ -33,7 +37,7 @@ class Public::EventsController < ApplicationController
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
-    redirect_to blogs_path
+    redirect_to customer_events_path
     flash[:notice] = "予定を削除しました"
   end
   

@@ -1,7 +1,7 @@
 <div class="container pt-5">
   <div class="row">
     <div class="col-md-10">
-      <%= form_with(model: @event, local: true) do |f| %>
+      <%= form_with(model: @event, url: customer_event_path(@event), local: true) do |f| %>
         <div class="time">
           <div class="form-tag">日時</div>
           <%= f.date_select :date %>
@@ -28,7 +28,7 @@
       
         <div class="content">
           <div class="form-tag">詳細</div>
-          <%= f.text_field :description, style: 'width: 100%; height: 200px;' %>
+          <%= f.text_area :description, style: 'width: 100%; height: 200px; resize: none;' %>
         </div>
       
         <div class="submit">

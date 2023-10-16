@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     get 'posts/search' => 'search#posts_search'
     get 'posts/favorites', to: 'favorites#index'
     resources :golf_courses, only: [:index, :show]
-    resources :events, except: [:new]
     resources :posts do
       resources :comments, except: [:show, :index]
       resource :favorites, only: [:create, :destroy]
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
         get 'confirm'
         patch 'withdrawal'
       end
+      resources :events, except: [:new]
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'

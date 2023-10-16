@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4">
       <h3 class="border-b">新規予定</h3>
-        <%= form_with(model: @event, local: true) do |f| %>
+        <%= form_with(model: [@event], url: customer_events_path, local: true) do |f| %>
 
           <div class="time border-b">
             <div class="form-tag">日時</div>
@@ -48,7 +48,7 @@
 
         <% events.each do |event| %>
           <div>
-            <%= link_to event.schedule_i18n, event %>
+            <%= link_to event.schedule_i18n, customer_event_path(customer_id: @customer.id, id: event.id) %>
           </div>
         <% end %>
       <% end %>

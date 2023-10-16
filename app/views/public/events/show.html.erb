@@ -15,9 +15,9 @@
         <%= @event.description %>
       </p>
 
-<%= link_to '編集', edit_event_path(@event) %>
-<%= link_to '消去',event_path(@event.id), method: :delete, data: { confirm: '本当に?' } %>
-<%= link_to '戻る', events_path %>
+      <%= link_to '編集', edit_customer_event_path(customer_id: @event.customer_id, id: @event.id) %>
+      <%= link_to '消去',customer_event_path(customer_id: @event.customer_id, id: @event.id), method: :delete, data: { confirm: '本当に?' } %>
+      <%= link_to '戻る', customer_events_path(@event.customer_id) %>
     </div>
   </div>
 </div>
