@@ -1,15 +1,31 @@
 class Public::GroupCustomersController < ApplicationController
   before_action :authenticate_customer!
   
+  def index
+    if params[:content]
+      @group = Group.find(params[:group_id])
+      @content = params[:content]
+      records = Customer.search_for(@content)
+      group_member = @group.customers.pluck(:id)
+      @customers = records.where.not(id: group_member)
+    else
+      @group = Group.find(params[:group_id])
+      group_member = @group.customers.pluck(:id)
+      @customers = Customer.where.not(id: group_member)
+    end
+  end
+  
   def create
-    group_user = current_user.group_users.new(group_id: params[:group_id])
-    group_user.save
+    customer = Customer.find(params[:id])
+    group_customer = customer.group_customers.new(group_id: params[:group_id])
+    group_customer.save
     redirect_to request.referer
   end
   
   def destroy
-    group_user = current_user.group_users.find_by(group_id: params[:group_id])
-    group_user.destroy
+    customer = Customer.find(params[:id])
+    group_customer = customer.group_customers.find_by(group_id: params[:group_id])
+    group_customer.destroy
     redirect_to request.referer
   end
   

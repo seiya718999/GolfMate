@@ -2,7 +2,6 @@ class Public::SearchController < ApplicationController
   
   def customers_search
     @content = params[:content]
-    @method = params[:method]
     @records = Customer.search_for(@content)
   end
   

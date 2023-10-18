@@ -41,6 +41,22 @@ class Public::EventsController < ApplicationController
     flash[:notice] = "予定を削除しました"
   end
   
+  def search
+    @group = Group.find(params[:group_id])
+    if  params[:start_date]
+      start_date = params[:start_date].to_date
+      end_date = params[:end_date].to_date
+      @date_range = (start_date..end_date).to_a
+      
+      group_id = params[:group_id]
+      @group_members = @group.customers
+      
+      member = GroupCustomer.where(group_id: group_id).pluck(:customer_id)
+      available_status = Event.schedules[:available] 
+      @available_events = Event.where(customer_id: member, schedule: :available, date: start_date..end_date)
+    end
+  end
+  
   private
   
   def event_params

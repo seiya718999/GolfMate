@@ -14,7 +14,7 @@
           <%= image_tag post.get_post_image(100, 100) %>
         <% end %>
       <% end %>
-      
+    
       <span>
         <% if current_customer %> <!-- ユーザーがログインしている場合のみリンクの表示 -->
           <% if post.favorited_by?(current_customer) %>

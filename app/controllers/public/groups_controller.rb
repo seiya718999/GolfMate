@@ -12,6 +12,8 @@ class Public::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @customers = @group.customers
+    @chats = @group.chats
+    @chat = Chat.new
   end
   
   def create
@@ -36,7 +38,7 @@ class Public::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to group_path(@group)
     else
       render "edit"
     end

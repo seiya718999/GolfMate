@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -16,7 +17,14 @@ Rails.application.routes.draw do
     get 'posts/favorites', to: 'favorites#index'
     resources :notifications, only: :index
     resources :golf_courses, only: [:index, :show]
-    resources :groups, except: [:destroy]
+    resources :groups, except: [:destroy] do
+      resources :chats, only: [:index, :create]
+      get 'customers', to: 'group_customers#index'
+      post 'customers', to: 'group_customers#create'
+      delete 'customers', to: 'group_customers#destroy'
+      get 'search_events', to: 'events#search'
+    end
+    
     resources :posts do
       resources :comments, except: [:show, :index]
       resource :favorites, only: [:create, :destroy]
@@ -26,7 +34,6 @@ Rails.application.routes.draw do
         get 'confirm'
         patch 'withdrawal'
       end
-      resources :group_customers, only: [:create, :destroy]
       resources :events, except: [:new]
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
