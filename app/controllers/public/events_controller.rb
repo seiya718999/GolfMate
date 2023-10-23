@@ -53,7 +53,7 @@ class Public::EventsController < ApplicationController
       
       member = GroupCustomer.where(group_id: group_id).pluck(:customer_id)
       available_status = Event.schedules[:available] 
-      @available_events = Event.where(customer_id: member, schedule: :available, date: start_date..end_date)
+      @available_events = Event.where(customer_id: member, schedule: available_status, date: start_date..end_date)
     end
   end
   

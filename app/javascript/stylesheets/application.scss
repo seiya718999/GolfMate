@@ -33,3 +33,46 @@
   padding-top: 0rem;
   color: #efa04c;
 }
+
+body {
+    background-image: url('../images/golfbg.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.body_item .container {
+    background-color: rgba(228, 243, 221, 0.97);
+    padding: 10px;
+}
+
+header {
+  background-color: rgba(127, 173, 144, 1);
+}
+
+.post-card {
+  margin-bottom: 20px;
+  .post-header {
+    display: flex;
+    align-items: center;
+  }
+  .post-avatar {
+    margin-right: 15px;
+  }
+  .post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+div.background-image {
+  background: url('../images/golf11.png') no-repeat center center;
+  background-size: cover;
+  height: 400px;
+  position: relative;  /* 子要素の位置を調整するための基準 */
+}
+
+.text-overlay {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}

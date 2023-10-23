@@ -13,12 +13,12 @@
   </head>
 
   <body>
-    <header class="">
+    <header class="sticky-top">
       <nav class="navbar navbar-expand-lg">
         <div class="container d-flex justify-content-between align-items-center">
 
           <%= link_to root_path, class: "mx-0" do %>
-            <%= image_tag "no_image.png", alt: "LOGO", size: "90x65" %>
+            <%= image_tag "golfmate.png", alt: "LOGO", size: "150x58" %>
           <% end %>
           <% if customer_signed_in? %>
             <div class="d-flex align-items-center justify-content-center" style="flex: 1;">
@@ -87,7 +87,7 @@
     </header>
     <span class="flash"><%= notice %></span>
     <span class="flash text-danger"><%= alert %></span>
-    <div>
+    <div class="body_item">
       <%= yield %>
     </div>
     
