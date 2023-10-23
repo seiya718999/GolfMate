@@ -25,15 +25,15 @@
         <div class="post-actions mt-3 d-flex justify-content-end">
           <% if current_customer %> <!-- ユーザーがログインしている場合のみリンクの表示 -->
             <% if post.favorited_by?(current_customer) %>
-              <%= link_to post_favorites_path(post), method: :delete, class: 'btn btn-outline-danger btn-sm mr-3' do %>
+              <%= link_to post_favorites_path(post), method: :delete, class: 'mr-3' do %>
                 ♥ <%= post.favorites.count %>
               <% end %>
             <% else %>
-              <%= link_to post_favorites_path(post), method: :post, class: 'btn btn-outline-primary btn-sm mr-3' do %>
+              <%= link_to post_favorites_path(post), method: :post, class: 'mr-3' do %>
                 ♡ <%= post.favorites.count %>
               <% end %>
             <% end %>
-            <%= link_to new_post_comment_path(post), class: 'btn btn-outline-secondary btn-sm' do %>
+            <%= link_to new_post_comment_path(post), class: '' do %>
               コメント <%= post.comments.count %>
             <% end %>
           <% else %>
