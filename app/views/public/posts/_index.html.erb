@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="post-header">
           <div>
-            <%= link_to customer_path(post.customer), class: "custom-black-link" do %>
+            <%= link_to customer_path(post.customer), class: "text-dark" do %>
               <span class="post-avatar">
                 <%= image_tag post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
               </span>
@@ -15,8 +15,8 @@
         </div>
         <hr>
         <div class="post-content">
-          <%= link_to post_path(post), class: 'custom-black-link' do %>
-            <p><%= post.body %></p>
+          <%= link_to post_path(post) do %>
+            <p class="text-dark"><%= post.body %></p>
             <% if post.get_post_image(100, 100) %>
               <%= image_tag post.get_post_image(100, 100), class: 'img-fluid rounded' %>
             <% end %>
@@ -25,15 +25,15 @@
         <div class="post-actions mt-3 d-flex justify-content-end">
           <% if current_customer %> <!-- ユーザーがログインしている場合のみリンクの表示 -->
             <% if post.favorited_by?(current_customer) %>
-              <%= link_to post_favorites_path(post), method: :delete, class: 'mr-3' do %>
+              <%= link_to post_favorites_path(post), method: :delete, class: 'mr-3 text-danger' do %>
                 ♥ <%= post.favorites.count %>
               <% end %>
             <% else %>
-              <%= link_to post_favorites_path(post), method: :post, class: 'mr-3' do %>
+              <%= link_to post_favorites_path(post), method: :post, class: 'mr-3 text-danger' do %>
                 ♡ <%= post.favorites.count %>
               <% end %>
             <% end %>
-            <%= link_to new_post_comment_path(post), class: '' do %>
+            <%= link_to new_post_comment_path(post), class: 'text-info' do %>
               コメント <%= post.comments.count %>
             <% end %>
           <% else %>

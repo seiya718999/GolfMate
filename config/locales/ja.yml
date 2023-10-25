@@ -1,4 +1,7 @@
 ja:
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
   enums:
     customer:
       gender:
