@@ -1,13 +1,23 @@
-<h5>本文</h5>
-<%= form_with model: post do |f| %>
-  <%= f.text_field :body %>
-
-  <p>画像</p>
-  <%= f.file_field :post_image, accept: "image/*" %>
-
-  <% if @post.body %>
-    <%= f.submit "変更を保存", class:"btn btn-success" %>
-  <% else %>
-    <%= f.submit "投稿する", class:"btn btn-success" %>
-  <% end %>
-<% end %>
+<div class="post-card card">
+  <div class="card-body">
+    <%= form_with model: post, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :body, "本文" %>
+        <%= f.text_area :body, class: 'form-control', style: 'height: 200px; resize: none;' %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :post_image, "画像" %>
+        <%= f.file_field :post_image, accept: "image/*", class: 'form-control-file' %>
+      </div>
+    
+      <div class="form-group">
+        <% if @post.body %>
+          <%= f.submit "変更を保存", class:"btn btn-success" %>
+        <% else %>
+          <%= f.submit "投稿する", class:"btn btn-success" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

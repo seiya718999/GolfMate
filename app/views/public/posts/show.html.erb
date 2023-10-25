@@ -19,16 +19,22 @@
                 </span>
                 <span class="text-dark"><%= @post.customer.last_name %> <%= @post.customer.first_name %></span>
               <% end %>
-              <small class="text-muted ml-3"><%= @post.created_at.strftime("%Y年%m月%d日") %></small>
+              <small class="text-muted ml-3 pr-5"><%= @post.created_at.strftime("%Y年%m月%d日") %></small>
+              <span>
+                <%= link_to edit_post_path(@post), method: :get, class: 'ml-5 mr-3 text-success' do %>
+                  編集
+                <% end %>
+                <%= link_to post_path(@post), method: :delete, class: 'text-danger', data: { confirm: '本当に削除しますか？' } do %>
+                  削除
+                <% end %>
+              </span>
             </div>
           </div>
           <hr>
           <div class="post-content">
-            <%= link_to post_path(@post), class: 'custom-black-link' do %>
-              <p class ><%= @post.body %></p>
-              <% if @post.get_post_image(100, 100) %>
-                <%= image_tag post.get_post_image(100, 100), class: 'img-fluid rounded' %>
-              <% end %>
+            <p class ><%= @post.body %></p>
+            <% if @post.get_post_image(100, 100) %>
+              <%= image_tag post.get_post_image(100, 100), class: 'img-fluid rounded' %>
             <% end %>
           </div>
           <div class="post-actions mt-3 d-flex justify-content-end">
