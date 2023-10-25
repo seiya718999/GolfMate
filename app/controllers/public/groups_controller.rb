@@ -12,7 +12,7 @@ class Public::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @customers = @group.customers
-    @chats = @group.chats
+    @chats = @group.chats.order(created_at: :desc)
     @chat = Chat.new
   end
   

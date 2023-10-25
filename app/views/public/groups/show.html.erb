@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-6 pt-5">
+    <div class="col-md-5 pt-5">
       <div class="mb-4">
         <h4 class="d-inline-block mr-3"><%= @group.name %></h4>
         <%= link_to "編集", edit_group_path(@group), class: "btn btn-success mr-2" %>
@@ -8,39 +8,31 @@
         <%= link_to "予定検索", group_search_events_path(group_id: @group), class: "btn btn-success" %>
       </div>
       <p class="mb-5"><%= @group.introduction %></p>
-      <table class="table table-hover">
-        <% @customers.each do |customer| %>
-          <tr>
-            <td class="align-middle">
-              <%= link_to customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(80, 80), class: 'rounded-circle mr-2' %>
-                <%= customer.last_name %><%= customer.first_name %>
-              <% end %>
-              <%= link_to "メンバーを削除する", group_customers_path(group_id: @group.id, id: customer.id), method: :delete, data: { confirm: "本当にこのメンバーを削除しますか?" }, class: "btn btn-danger ml-3" %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="col-md-5">
-      <div style="max-height: 500px; overflow-y: auto;" class="card mb-4 bg-white">
-        <div class="card-body">
-          <% if @chats.present? %>
-            <% @chats.each do |chat| %>
-              <div class="mb-4">
-                <%= link_to customer_path(chat.customer) do %>
-                  <%= image_tag chat.customer.get_profile_image(70, 70), class: "rounded-circle mr-2" %>
-                  <strong><%= chat.customer.last_name %> <%= chat.customer.first_name %></strong>
+      
+      <div style="max-height: 500px; overflow-y: auto;">
+        <table class="table table-hover">
+          <% @customers.each do |customer| %>
+            <tr>
+              <td class="align-middle">
+                <%= link_to customer_path(customer.id) do %>
+                  <%= image_tag customer.get_profile_image(70, 70), class: 'rounded-circle mr-2' %>
+                  <%= customer.last_name %><%= customer.first_name %>
                 <% end %>
-                <p class="mb-1"><%= chat.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
-                <p><%= chat.content %></p>
-              </div>
-            <% end %>
+                <%= link_to "メンバーを削除する", group_customers_path(group_id: @group.id, id: customer.id), method: :delete, data: { confirm: "本当にこのメンバーを削除しますか?" }, class: "btn btn-danger ml-3" %>
+              </td>
+            </tr>
           <% end %>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="height: 500px; overflow-y: auto;" class="card bg-white">
+        <div class="card-body chats">
+          <%= render 'public/chats/index', chats: @chats %>
         </div>
       </div>
       <div class="pt-5">
-        <%= form_with model: [@chat], url: group_chats_path(@group) do |f| %>
+        <%= form_with model: [@chat], url: group_chats_path(@group), local: false do |f| %>
           <div class="form-group">
             <%= f.text_field :content, class: "form-control", placeholder: "メッセージを入力..." %>
           </div>

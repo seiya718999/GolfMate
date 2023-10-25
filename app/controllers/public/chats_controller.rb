@@ -3,11 +3,10 @@ class Public::ChatsController < ApplicationController
 
   def create
     @group = Group.find(params[:group_id])
+    @chats = @group.chats.order(created_at: :desc)
     @chat = @group.chats.new(chat_params)
     @chat.customer_id = current_customer.id
-    if @chat.save
-      redirect_to group_path(@group)
-    else
+    unless  @chat.save
       render :index
     end
   end

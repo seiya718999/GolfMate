@@ -1,11 +1,11 @@
 <ul class="list-group">
   <% customers.each do |customer| %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
+    <li class="list-group-item d-flex justify-content-between align-items-center" id="customer_<%= customer.id %>">
       <div class="d-flex align-items-center">
         <%= image_tag customer.get_profile_image(70, 70), class: "rounded-circle mr-3" %>
         <%= link_to "#{customer.last_name} #{customer.first_name}", customer_path(customer.id), class: "text-primary" %>
       </div>
-      <div>
+      <div class="follow_btn">
         <%= render "public/relationships/follow_btn", customer: customer %>
       </div>
     </li>

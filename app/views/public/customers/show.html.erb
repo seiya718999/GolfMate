@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-10 pt-5">
-      <div class="card shadow">
+      <div class="card shadow" id="customer_<%= @customer.id %>">
         <div class="card-body">
           <% if current_customer && @customer.id == current_customer.id %>
               <div class="d-flex align-items-center mb-3">
@@ -32,7 +32,7 @@
               <div class="d-flex align-items-center mb-3">
                 <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
                 <h4 class="ml-2 mr-3">ユーザー詳細</h4>
-                <span class="pl-3"><%= render "public/relationships/follow_btn", customer: @customer %></span>
+                <span class="pl-3 follow_btn"><%= render "public/relationships/follow_btn", customer: @customer %></span>
               </div>
               <div class="mb-3">
                 <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark" do %>

@@ -1,0 +1,14 @@
+<% if chats.present? %>
+  <% chats.each do |chat| %>
+    <div class="mb-4">
+      <%= link_to customer_path(chat.customer) do %>
+        <%= image_tag chat.customer.get_profile_image(70, 70), class: "rounded-circle mr-2" %>
+        <strong><%= chat.customer.last_name %> <%= chat.customer.first_name %></strong>
+      <% end %>
+      <span class="mb-2 pl-2"><%= chat.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>
+      <p class="ml-5 pl-4"><%= chat.content %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p class="d-flex justify-content-center text-muted">まだチャットがありません</p>
+<% end %>
