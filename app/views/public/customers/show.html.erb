@@ -1,97 +1,108 @@
-<div class="container">
-  <div class="row">
+<div class="container mt-5">
+  <div class="row justify-content-center">
     <div class="col-lg-10 pt-5">
-      <% if current_customer && @customer.id == current_customer.id %>
-        <div class="d-flex align-items-center">
-          <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
-          <h4 class="ml-2">マイページ</h4>
+      <div class="card shadow">
+        <div class="card-body">
+          <% if current_customer && @customer.id == current_customer.id %>
+              <div class="d-flex align-items-center mb-3">
+                <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
+                <h4 class="ml-2">マイページ</h4>
+              </div>
+              <div class="d-flex flex-wrap align-items-center">
+                <% if @customer.email != "guest@example.com" %>
+                  <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-outline-info mr-2 mb-2" %>
+                <% end %>
+                <%= link_to posts_favorites_path, class: "btn btn-outline-danger mr-2 mb-2" do %>
+                  <i class="fas fa-heart"></i> いいね一覧
+                <% end %>
+                <%= link_to customer_followings_path(current_customer), class: "btn btn-outline-info mr-2 mb-2" do %>
+                  フォロー
+                <% end %>
+                <%= link_to customer_followers_path(current_customer), class: "btn btn-outline-info mr-2 mb-2" do %>
+                  フォロワー
+                <% end %>
+                <%= link_to groups_path, class: "btn btn-outline-success mr-2 mb-2" do %>
+                  <i class="fas fa-users"></i> グループ
+                <% end %>
+                <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark mr-2 mb-2" do %>
+                  <i class="fas fa-calendar-alt"></i>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="d-flex align-items-center mb-3">
+                <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
+                <h4 class="ml-2 mr-3">ユーザー詳細</h4>
+                <span class="pl-3"><%= render "public/relationships/follow_btn", customer: @customer %></span>
+              </div>
+              <div class="mb-3">
+                <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark" do %>
+                  <i class="fas fa-calendar-alt"></i>
+                <% end %>
+              </div>
+            <% end %>
+          <table class="table pt-4">
+            <tr>
+              <td>
+                お名前
+              </td>
+              <td>
+                <%= @customer.last_name %>　<%= @customer.first_name %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                メールアドレス
+              </td>
+              <td>
+                <%= @customer.email %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                プレースタイル
+              </td>
+              <td>
+                <%= @customer.play_style_i18n %>
+              </td>
+            </tr>
+            <tr class="border-0">
+              <td class="border-0">
+                平均スコア
+              </td>
+              <td class="border-0">
+                <%= @customer.average_score %>
+              </td>
+            </tr>
+            <tr class="border-0">
+              <td class="border-0">
+                都道府県
+              </td>
+              <td class="border-0">
+                <%= @customer.address %>
+              </td>
+            </tr>
+            <tr class="border-0">
+              <td class="border-0">
+                性別
+              </td>
+              <td class="border-0">
+                <%= @customer.gender_i18n %>
+              </td>
+            </tr>
+            <tr class="border-0">
+              <td class="border-0">
+                自己紹介
+              </td>
+              <td class="border-0">
+                <%= @customer.introduction %>
+              </td>
+            </tr>
+          </table>
         </div>
-        <% if @customer.email != "guest@example.com" %>
-          <div>
-            <%= link_to "編集", edit_customer_path(@customer.id) %>
-          </div>
-        <% end %>
-        <%= link_to posts_favorites_path do %>
-            いいね一覧
-        <% end %>
-        <%= link_to customer_followings_path(current_customer) do %>
-            フォロー
-        <% end %>
-        <%= link_to customer_followers_path(current_customer) do %>
-            フォロワー
-        <% end %>
-        <%= link_to groups_path do %>
-            グループ
-        <% end %>
-      <% else %>
-        <div class="d-flex align-items-center">
-          <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle" %>
-          <h4 class="ml-2">ユーザー詳細</h4>
-          <%= render "public/relationships/follow_btn", customer: @customer%>
-        </div>
-      <% end %>
-      <%= link_to customer_events_path(@customer) do %>
-        カレンダー
-      <% end %>
-      <table class="table mb-0">
-        <tr>
-          <td>
-            お名前
-          </td>
-          <td>
-            <%= @customer.last_name %>　<%= @customer.first_name %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            メールアドレス
-          </td>
-          <td>
-            <%= @customer.email %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            プレースタイル
-          </td>
-          <td>
-            <%= @customer.play_style_i18n %>
-          </td>
-        </tr>
-        <tr class="border-0">
-          <td class="border-0">
-            平均スコア
-          </td>
-          <td class="border-0">
-            <%= @customer.average_score %>
-          </td>
-        </tr>
-        <tr class="border-0">
-          <td class="border-0">
-            都道府県
-          </td>
-          <td class="border-0">
-            <%= @customer.address %>
-          </td>
-        </tr>
-        <tr class="border-0">
-          <td class="border-0">
-            性別
-          </td>
-          <td class="border-0">
-            <%= @customer.gender_i18n %>
-          </td>
-        </tr>
-        <tr class="border-0">
-          <td class="border-0">
-            自己紹介
-          </td>
-          <td class="border-0">
-            <%= @customer.introduction %>
-          </td>
-        </tr>
-      </table>
-      <%= render "public/posts/index", posts: @posts %>
+      </div>
+      <div class="pt-4">
+        <%= render "public/posts/index", posts: @posts %>
+      </div>
     </div>
   </div>
 </div>

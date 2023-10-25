@@ -1,34 +1,35 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
-<div class="col-md-6 mx-auto">
-  <div class="form-inline">
-    <span>
+<div class="col-md-7 mx-auto py-2">
+  <div class="d-flex justify-content-between align-items-center border rounded p-3 shadow-sm bg-white">
+    <div>
       <%= link_to customer_path(visitor) do %>
-        <strong><%= visitor.last_name %><%= visitor.first_name %></strong>
+        <strong class="text-primary"><%= visitor.last_name %><%= visitor.first_name %></strong>
       <% end %>
-      <%= 'さんが' %>
-      <% case notification.action %>
-        <% when 'follow' %>
-          <%= "あなたをフォローしました" %>
-        <% when 'like' %>
-          <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>にいいねしました
-        <% when 'comment' %>
-          <% if notification.post.customer_id == visited.id %>
-            <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-          <% else %>
-            <span>
+      <span>
+        <%= 'さんが' %>
+        <% case notification.action %>
+          <% when 'follow' %>
+            <%= "あなたをフォローしました" %>
+          <% when 'like' %>
+            <%= link_to 'あなたの投稿', notification.post, class: "text-success" %>にいいねしました
+          <% when 'comment' %>
+            <% if notification.post.customer_id == visited.id %>
+              <%= link_to "あなたの投稿", notification.post, class: "text-info" %>
+            <% else %>
               <%= link_to post_path(notification.post) do %>
-                <strong><%= notification.post.customer.last_name %><%= notification.post.customer.first_name %>さんの投稿</strong>
+                <strong class="text-warning"><%= notification.post.customer.last_name %><%= notification.post.customer.first_name %>さんの投稿</strong>
               <% end %>
-            </span>
-          <% end %>
-          <%= "にコメントしました" %>
-          <p class="text-muted mb-0"><%= Comment.find_by(id: notification.comment_id)&.body %></p>
-      <% end %>
-    </span>
+            <% end %>
+            <%= "にコメントしました" %>
+            <blockquote class="small mt-2 mb-0 pl-3 border-left">
+              <p class="mb-0 text-muted"><%= Comment.find_by(id: notification.comment_id)&.body %></p>
+            </blockquote>
+        <% end %>
+      </span>
+    </div>
+    <div class="small text-muted">
+      <%= time_ago_in_words(notification.created_at).upcase %>前
+    </div>
   </div>
-  <div class="small text-muted text-right">
-    <%= time_ago_in_words(notification.created_at).upcase %>
-  </div>
-  <hr>
 </div>

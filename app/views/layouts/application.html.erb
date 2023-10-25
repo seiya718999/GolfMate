@@ -10,6 +10,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP" rel="stylesheet">
   </head>
 
   <body>
@@ -21,8 +22,8 @@
             <%= image_tag "golfmate.png", alt: "LOGO", size: "150x58" %>
           <% end %>
           <% if customer_signed_in? %>
-            <div class="d-flex align-items-center justify-content-center" style="flex: 1;">
-              <p class="mx-2 text-secondary p-centered">ようこそ、<%= current_customer.last_name %> さん！</p>
+            <div class="d-flex align-items-center justify-content-center pt-2" style="flex: 1;">
+              <p class="text-secondary">ようこそ、<%= current_customer.last_name %> さん！</p>
             </div>
           <% end %>
 
@@ -85,8 +86,10 @@
         </div>
       </nav>
     </header>
-    <span class="flash"><%= notice %></span>
-    <span class="flash text-danger"><%= alert %></span>
+    <% if notice || alert %>
+      <span class="flash"><%= notice %></span>
+      <span class="flash text-danger"><%= alert %></span>
+    <% end %>
     <div class="body_item">
       <%= yield %>
     </div>

@@ -6,7 +6,11 @@
   </div>
   <div class="row d-flex justify-content-center">
     <div class="col-lg-7 pt-5">
-      <h4>投稿一覧</h4><%= render 'post_new' %>
+      <div class="d-flex align-items-center">
+        <h4 class="mr-5">投稿一覧</h4>
+        
+        <%= render 'post_new' %>
+      </div>
       <%= render 'index', posts: @posts %>
     </div>
   </div>

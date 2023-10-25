@@ -27,7 +27,7 @@ class Public::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to customer_events_path
+      redirect_to customer_events_path(customer_id: @event.customer.id)
       flash[:notice] = "予定を更新しました"
     else
       render 'edit'
@@ -35,10 +35,13 @@ class Public::EventsController < ApplicationController
   end
   
   def destroy
-    @blog = Blog.find(params[:id])
-    @blog.destroy
-    redirect_to customer_events_path
-    flash[:notice] = "予定を削除しました"
+    @event = Event.find(params[:id])
+    if @event.destroy
+      redirect_to customer_events_path(customer_id: @event.customer.id)
+      flash[:notice] = "予定を削除しました"
+    else
+      render 'edit'
+    end
   end
   
   def search

@@ -3,11 +3,11 @@
     <div class="post-card card">
       <div class="card-body">
         <div class="post-header">
-          <div class="post-avatar">
-            <%= image_tag post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
-          </div>
           <div>
-            <%= link_to customer_path(post.customer) do %>
+            <%= link_to customer_path(post.customer), class: "custom-black-link" do %>
+              <span class="post-avatar">
+                <%= image_tag post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+              </span>
               <%= post.customer.last_name %> <%= post.customer.first_name %>
             <% end %>
             <small class="text-muted ml-3"><%= post.created_at.strftime("%Y年%m月%d日") %></small>

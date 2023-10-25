@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       flash[:notice] = "投稿を削除しました。"
-      redirect_to posts_path
+      redirect_to customer_path(current_customer.id)
     else
       render :show
     end

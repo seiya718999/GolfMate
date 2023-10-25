@@ -1,4 +1,7 @@
 @use '~bootstrap/scss/bootstrap';
+header, nav, body {
+  font-family: 'Noto Serif JP', sans-serif;
+}
 
 .custom-black-link {
   color: black;
@@ -75,4 +78,22 @@ div.background-image {
 .text-overlay {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.btn-square {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #FFF;
+  border-radius: 3px;
+}
+
+.btn-square:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  border-bottom: none;
+}
+.flash {
+    margin-left: 500px;
 }
