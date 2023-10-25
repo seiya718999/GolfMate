@@ -1,5 +1,5 @@
 <%= form_with model: comment, url: post_comments_path(post) do |f| %>
-  <%= f.text_area :body, style: 'width: 70%; height: 200px; resize: none;' %>
+  <%= f.text_area :body, local: false, style: 'width: 70%; height: 200px; resize: none;' %>
 
 
   <% if comment.body %>

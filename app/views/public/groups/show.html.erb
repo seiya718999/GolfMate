@@ -23,7 +23,7 @@
       </table>
     </div>
     <div class="col-md-5">
-      <div class="card mb-4">
+      <div style="max-height: 500px; overflow-y: auto;" class="card mb-4 bg-white">
         <div class="card-body">
           <% if @chats.present? %>
             <% @chats.each do |chat| %>
@@ -32,7 +32,7 @@
                   <%= image_tag chat.customer.get_profile_image(70, 70), class: "rounded-circle mr-2" %>
                   <strong><%= chat.customer.last_name %> <%= chat.customer.first_name %></strong>
                 <% end %>
-                <p class="mb-1"><%= chat.created_at.strftime("%Y年%m月%d日") %></p>
+                <p class="mb-1"><%= chat.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
                 <p><%= chat.content %></p>
               </div>
             <% end %>

@@ -1,6 +1,6 @@
 <% if posts.present? %>
   <% posts.each do |post| %>
-    <div class="post-card card">
+    <div class="post-card card" id="post_<%= post.id %>">
       <div class="card-body">
         <div class="post-header">
           <div>
@@ -24,15 +24,7 @@
         </div>
         <div class="post-actions mt-3 d-flex justify-content-end">
           <% if current_customer %> <!-- ユーザーがログインしている場合のみリンクの表示 -->
-            <% if post.favorited_by?(current_customer) %>
-              <%= link_to post_favorites_path(post), method: :delete, class: 'mr-3 text-danger' do %>
-                ♥ <%= post.favorites.count %>
-              <% end %>
-            <% else %>
-              <%= link_to post_favorites_path(post), method: :post, class: 'mr-3 text-danger' do %>
-                ♡ <%= post.favorites.count %>
-              <% end %>
-            <% end %>
+            <%= render "public/favorites/favorite-btn", post: post %>
             <%= link_to new_post_comment_path(post), class: 'text-info' do %>
               コメント <%= post.comments.count %>
             <% end %>
