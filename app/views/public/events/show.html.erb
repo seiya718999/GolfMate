@@ -1,23 +1,24 @@
 <div class="container pt-5">
-  <div class="row">
-    <div class="col-md-4">
-      <p>
-        <strong>日時</strong>
-        <%= @event.date.strftime("%m-%d") %>
-      </p>
-      <p>
-        <strong>予定</strong>
-        <%= @event.schedule_i18n %>
-      </p>
-      
-      <p>
-        <strong>詳細</strong>
-        <%= @event.description %>
-      </p>
-
-      <%= link_to '編集', edit_customer_event_path(customer_id: @event.customer_id, id: @event.id) %>
-      <%= link_to '消去',customer_event_path(customer_id: @event.customer_id, id: @event.id), method: :delete, data: { confirm: '本当に?' } %>
-      <%= link_to '戻る', customer_events_path(@event.customer_id) %>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @event.date.strftime("%m月%d日") %></h5>
+          <p class="mb-2">
+            <strong>予定：</strong>
+            <%= @event.schedule_i18n %>
+          </p>
+          <p class="pb-5">
+            <strong>詳細：</strong>
+            <%= @event.description %>
+          </p>
+          <div class="mt-4 justify-content-between">
+            <%= link_to '編集', edit_customer_event_path(customer_id: @event.customer_id, id: @event.id), class: 'btn btn-primary mr-3' %>
+            <%= link_to '消去', customer_event_path(customer_id: @event.customer_id, id: @event.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-danger mr-3' %>
+            <%= link_to '戻る', customer_events_path(@event.customer_id), class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
