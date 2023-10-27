@@ -1,30 +1,31 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-lg-7 pt-5">
-      
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4>メンバー追加</h4>
-      </div>
-      <div>
-        <%= form_with url: group_customers_path(group_id: @group.id), method: :get, local: true do |f| %>
-          <%= f.text_field :content, placeholder: "ユーザー検索" %>
+    <div class="col-md-7 pt-5">
+      <div class="d-flex justify-content-center">
+        <h4 class="pr-5">メンバー追加</h4>
+        <%= form_with url: group_customers_path(group_id: @group.id), class:"mr-4", method: :get, local: true do |f| %>
+          <%= f.text_field :content, placeholder: "会員検索" %>
           <%= f.submit '検索' %>
         <% end %>
+        <%= link_to "戻る", group_path(@group), class:"btn btn-secondary" %>
       </div>
-      
-      <table class="table">
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6 pt-4">
+      <ul class="list-group">
         <% @customers.each do |customer| %>
-          <tr>
-            <td>
+          <li class="list-group-item d-flex justify-content-between align-items-center" >
+            <div class="d-flex align-items-center">
               <%= link_to customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(70, 70), class: "rounded-circle" %>
+                <%= image_tag customer.get_profile_image(70, 70), class: "rounded-circle mr-3" %>
                 <%= customer.last_name %><%= customer.first_name %>
               <% end %>
-              <%= link_to "追加", group_customers_path(group_id: @group.id, id: customer.id), method: :post %>
-            </td>
-          </tr>
+            </div>
+            <%= link_to "追加", group_customers_path(group_id: @group.id, id: customer.id), method: :post, class:"btn btn-outline-info" %>
+          </li>
         <% end %>
-      </table>
+      </ul>
     </div>
   </div>
 </div>

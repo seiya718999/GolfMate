@@ -1,62 +1,71 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10 pt-5">
-      <h2>新規会員登録</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-9 pt-5">
+      <div class="card shadow">
+        <div class="d-flex justify-content-center">
+            <h2 class="text-center mt-3">新規会員登録</h2>
+        </div>
+        <div class="card-body">
+          <%= form_with model: @customer, url: customer_registration_path do |f| %>
+            <%= render "public/shared/error_messages", resource: resource %>
 
-      <%= form_with model: @customer, url: customer_registration_path do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
+            <table class="table mb-0">
+              <tr>
+                <td class="">
+                  お名前　必須
+                </td>
+                <td>
+                   <%= f.text_field :last_name, autofocus: true, placeholder: "令和" %>
+                   <%= f.text_field :first_name, placeholder: "道子" %>
+                </td>
+              </tr>
 
-        <table class="table">
-          <tr>
-            <td class="">
-              お名前　必須
-            </td>
-            <td>
-               <%= f.text_field :last_name, autofocus: true, placeholder: "令和" %>
-               <%= f.text_field :first_name, placeholder: "道子" %>
-            </td>
-          </tr>
+              <tr>
+                <td class="">
+                  お名前（かな）　必須
+                </td>
+                <td>
+                  <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %>
+                  <%= f.text_field :first_name_kana, placeholder: "ミチコ" %>
+                </td>
+              </tr>
 
-          <tr>
-            <td class="">
-              お名前（かな）　必須
-            </td>
-            <td>
-              <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %>
-              <%= f.text_field :first_name_kana, placeholder: "ミチコ" %>
-            </td>
-          </tr>
+              <tr>
+                <td>メールアドレス</td>
+                <td>
+                  <%= f.text_field :email, placeholder: "sample@example.com" %>
+                </td>
+              </tr>
+              <tr>
+                <td>パスワード（6文字以上）</td>
+                <td>
+                  <%= f.password_field :password, autocomplete: "new-password"  %>
+                </td>
+              </tr>
 
-          <tr>
-            <td>メールアドレス</td>
-            <td>
-              <%= f.text_field :email, placeholder: "sample@example.com" %>
-            </td>
-          </tr>
-          <tr>
-            <td>パスワード（6文字以上）</td>
-            <td>
-              <%= f.password_field :password, autocomplete: "new-password"  %>
-            </td>
-          </tr>
+              <tr>
+                <td>パスワード(確認用)</td>
+                <td>
+                  <%= f.password_field :password, autocomplete: "new-password"  %>
+                </td>
+              </tr>
 
-          <tr>
-            <td>パスワード(確認用)</td>
-            <td>
-              <%= f.password_field :password, autocomplete: "new-password"  %>
-            </td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td>
-              <%= f.submit "新規登録", class:"btn btn-success" %>
-            </td>
-          </tr>
-        </table>
-      <% end %>
-
-      <%= render "public/shared/links" %>
+              <tr>
+                <td></td>
+                <td>
+                  <%= f.submit "新規登録", class:"btn-square" %>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+        <div class="ml-5">
+          <%= render "public/shared/links" %>
+        </div>
+        <div class="text-center mt-3">
+          <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "mb-4 btn btn-outline-secondary", method: :post %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

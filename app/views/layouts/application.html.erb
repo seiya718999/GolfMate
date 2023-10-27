@@ -87,8 +87,12 @@
       </nav>
     </header>
     <% if notice || alert %>
-      <span class="flash"><%= notice %></span>
-      <span class="flash text-danger"><%= alert %></span>
+      <div class="d-flex justify-content-center align-items-center" style="height: 5vh;">
+        <div class="text-center">
+          <span class="d-block flash"><%= notice %></span>
+          <span class="text-danger d-block flash"><%= alert %></span>
+        </div>
+      </div>
     <% end %>
     <div class="body_item">
       <%= yield %>

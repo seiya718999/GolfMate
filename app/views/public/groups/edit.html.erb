@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-7 pt-5">
+      <%= render 'errors', group: @group %>
       <h4>グループ編集</h4>
       <%= render "form", group: @group %>
     </div>

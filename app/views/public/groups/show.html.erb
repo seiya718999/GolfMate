@@ -12,13 +12,15 @@
       <div style="max-height: 500px; overflow-y: auto;">
         <table class="table table-hover">
           <% @customers.each do |customer| %>
-            <tr>
-              <td class="align-middle">
+            <tr class="bg-white">
+              <td class="align-middle d-flex">
                 <%= link_to customer_path(customer.id) do %>
                   <%= image_tag customer.get_profile_image(70, 70), class: 'rounded-circle mr-2' %>
                   <%= customer.last_name %><%= customer.first_name %>
                 <% end %>
-                <%= link_to "メンバーを削除する", group_customers_path(group_id: @group.id, id: customer.id), method: :delete, data: { confirm: "本当にこのメンバーを削除しますか?" }, class: "btn btn-danger ml-3" %>
+                <div class="ml-auto">
+                  <%= link_to "メンバーを削除する", group_customers_path(group_id: @group.id, id: customer.id), method: :delete, data: { confirm: "本当にこのメンバーを削除しますか?" }, class: "btn btn-danger" %>
+                </div>
               </td>
             </tr>
           <% end %>

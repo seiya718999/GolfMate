@@ -2,6 +2,7 @@
   <div class="row">
     <% if @customer == current_customer %>
       <div class="col-md-4">
+        <%= render 'errors', event: @event %>
         <h3 class="border-b mb-3">新規予定</h3>
         <%= form_with(model: [@event], url: customer_events_path, local: true) do |f| %>
           <div class="time border-b mb-3">
@@ -9,7 +10,7 @@
             <%= f.date_select :date %>
           </div>
 
-          <div class="title border-b">
+          <div class="title border-b radio-group">
             <div class="form-tag">予定</div>
             <span class="mr-2">
               <%= f.radio_button :schedule, Event.schedules.key(0) %>

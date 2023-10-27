@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-lg-6 pt-5">
+      <%= render 'errors', post: @post %>
       <h4>投稿編集</h4>
       <%= render "form", post: @post%>
     </div>

@@ -47,7 +47,7 @@ body {
     background-attachment: fixed;
 }
 
-.body_item .container {
+.body_item .container, .flash {
     background-color: rgba(228, 243, 221, 0.97);
     padding: 10px;
 }
@@ -98,9 +98,7 @@ div.background-image {
   transform: translateY(4px);
   border-bottom: none;
 }
-.flash {
-  margin-left: 500px;
-}
+
 .calendar-heading {
   display: flex;
   justify-content: space-between;
@@ -129,4 +127,7 @@ div.background-image {
 
 .td {
   margin-top: 0;
+}
+.radio-group .field_with_errors {
+  display: inline-block;
 }

@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   
   has_many :notifications, dependent: :destroy
   
+  validates :body, presence: true
+  
   def get_post_image(width, height)
     if post_image.attached?
       post_image.variant(resize_to_limit: [width, height]).processed

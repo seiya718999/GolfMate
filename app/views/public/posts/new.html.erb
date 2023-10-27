@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6 pt-5">
+      <%= render 'errors', post: @post %>
       <h4>新規投稿</h4>
       <%= render "form", post: @post%>
     </div>
