@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
   
   def index
-    @customers = Customer.all
+    @customers = Customer.where(is_deleted: false)
   end
   
   def show

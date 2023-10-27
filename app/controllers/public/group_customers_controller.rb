@@ -7,11 +7,11 @@ class Public::GroupCustomersController < ApplicationController
       @content = params[:content]
       records = Customer.search_for(@content)
       group_member = @group.customers.pluck(:id)
-      @customers = records.where.not(id: group_member)
+      @customers = records.where.not(id: group_member).where(is_deleted: false)
     else
       @group = Group.find(params[:group_id])
       group_member = @group.customers.pluck(:id)
-      @customers = Customer.where.not(id: group_member)
+      @customers = Customer.where.not(id: group_member).where(is_deleted: false)
     end
   end
   
