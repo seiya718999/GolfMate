@@ -31,7 +31,7 @@
             <% else %>
               <div class="d-flex align-items-center mb-3">
                 <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
-                <h4 class="ml-2 mr-3">ユーザー詳細</h4>
+                <h4 class="ml-2 mr-3">会員詳細</h4>
                 <span class="pl-3 follow_btn"><%= render "public/relationships/follow_btn", customer: @customer %></span>
               </div>
               <div class="mb-3">

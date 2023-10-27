@@ -4,6 +4,9 @@
       <%= render 'public/search/post_form' %>
     </div>
   </div>
+  
+  
+  
   <div class="row d-flex justify-content-center">
     <div class="col-lg-7 pt-5">
       <div>
@@ -35,8 +38,8 @@
           <hr>
           <div class="post-content">
             <p class ><%= @post.body %></p>
-            <% if @post.get_post_image(100, 100) %>
-              <%= image_tag @post.get_post_image(100, 100), class: 'img-fluid rounded' %>
+            <% if @post.get_post_image(100) %>
+              <%= image_tag @post.get_post_image(100), class: 'img-fluid rounded' %>
             <% end %>
           </div>
           <div class="post-actions mt-3 d-flex justify-content-end">

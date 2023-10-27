@@ -1,32 +1,51 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 d-flex ml-auto mb-2 mt-1">
-      <%= render 'admin/search/post_form' %>
+    <div class="col-md-4 d-flex ml-auto mb-2 mt-1">
+      <%= render 'public/search/post_form' %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-10 pt-5 border-b">
-      <%= link_to admin_customer_path(@post.customer) do %>
-        <%= image_tag @post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
-      <% end %>
-      <%= @post.customer.last_name %>　<%= @post.customer.first_name %>
-      <%= @post.created_at.strftime("%Y年%m月%d日") %><br>
-
-      <%= @post.body %>
-      <% if @post.get_post_image(100, 100) %>
-        <%= image_tag post.get_post_image(100, 100) %>
-      <% end %>
-      <span>
-        ♡<%= @post.favorites.count %>
-        コメント<%= @post.comments.count %>
-      </span>
-      <%= link_to "編集", edit_admin_post_path(@post.id) %>
-      <%= link_to "投稿を削除", admin_post_path(@post.id), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-7 pt-5">
+      <div>
+        <h4>投稿詳細</h4>
+      </div>
+      <div class="post-card card" id="post_<%= @post.id %>">
+        <div class="card-body">
+          <div class="post-header">
+            <div>
+              <%= link_to admin_customer_path(@post.customer) do %>
+                <span class="post-avatar">
+                  <%= image_tag @post.customer.get_profile_image(70, 70), class: "rounded-circle" %>
+                </span>
+                <span class="text-dark"><%= @post.customer.last_name %> <%= @post.customer.first_name %></span>
+              <% end %>
+              <small class="text-muted ml-3 pr-5"><%= @post.created_at.strftime("%Y年%m月%d日") %></small>
+              <span>
+                <%= link_to admin_post_path(@post), method: :delete, class: 'text-danger', data: { confirm: '本当に削除しますか？' } do %>
+                  削除
+                <% end %>
+              </span>
+            </div>
+          </div>
+          <hr>
+          <div class="post-content">
+            <p class ><%= @post.body %></p>
+            <% if @post.get_post_image(100) %>
+              <%= image_tag @post.get_post_image(100), class: 'img-fluid rounded' %>
+            <% end %>
+          </div>
+          <div class="post-actions mt-3 d-flex justify-content-end">
+            <span class="text-muted mr-3">♡ <%= @post.favorites.count %></span>
+            <span class="text-muted">コメント <%= @post.comments.count %></span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-  <div class="row">
+  <div class="row d-flex justify-content-center">
     <div class="col-md-5 mb-2 mt-1">
       <%= render "admin/comments/index", comments: @comments %>
     </div>
   </div>
 </div>
+
