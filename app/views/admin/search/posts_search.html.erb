@@ -4,7 +4,7 @@
       <%= render 'admin/search/post_form' %>
     </div>
   </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-lg-6 pt-5">
       <h4>【<%= @content %>】が含まれる投稿<%= @records.count %>件</h4>
       <%= render "admin/homes/index", posts: @records %>

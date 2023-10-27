@@ -4,9 +4,9 @@
       <%= render 'admin/search/customer_form' %>
     </div>
   </div>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-lg-6 pt-5">
-      <h4>【<%= @content %>】を含むユーザー<%= @records.count %>件</h4>
+      <h4>【<%= @content %>】を含む会員<%= @records.count %>人</h4>
       <%= render "admin/customers/index", customers: @records%>
     </div>
   </div>

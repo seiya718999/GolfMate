@@ -1,18 +1,23 @@
-<table class="table">
+<ul class="list-group">
   <% customers.each do |customer| %>
-    <tr>
-      <td>
-        <%= link_to admin_customer_path(customer.id) do %>
-          <%= image_tag customer.get_profile_image(80, 80) %>
-          <%= customer.last_name %><%= customer.first_name %>
-        <% end %>
-        <% if customer.is_deleted == false %>
-          <span class="text-success">有効</span>
-        <% end %>
-        <% if customer.is_deleted == true %>
-          <span class="text-danger">退会</span>
-        <% end %>
-      </td>
-    </tr>
+    <li class="list-group-item" id="customer_<%= customer.id %>">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <%= link_to admin_customer_path(customer.id) do %>
+            <%= image_tag customer.get_profile_image(80, 80), class: "rounded-circle mr-4" %>
+            <span class="custom-black-link">
+              <%= customer.last_name %><%= customer.first_name %>
+            </span>
+          <% end %>
+        </div>
+        <div>
+          <% if customer.is_deleted == false %>
+            <span class="text-success mr-4">有効</span>
+          <% elsif customer.is_deleted == true %>
+            <span class="text-danger mr-4">退会</span>
+          <% end %>
+        </div>
+      </div>
+    </li>
   <% end %>
-</table>
+</ul>
