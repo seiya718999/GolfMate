@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :is_matching_login_customer, only: [:edit, :update]
+  
   def new
     @post = Post.new
   end
@@ -50,6 +52,16 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:post_image, :body)
+  end
+  
+  def is_matching_login_customer
+    if current_customer
+      post = Post.find(params[:id])
+      customer = post.customer
+      unless customer.id == current_customer.id
+        redirect_to posts_path
+      end
+    end
   end
   
 end

@@ -1,5 +1,7 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :is_matching_login_customer, only: [:edit, :update]
+  
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
@@ -48,5 +50,15 @@ class Public::CommentsController < ApplicationController
   
   def comment_params
     params.require(:comment).permit(:body)
+  end
+  
+  def is_matching_login_customer
+    if current_customer
+      comment = Comment.find(params[:id])
+      customer = comment.customer
+      unless customer.id == current_customer.id
+        redirect_to posts_path
+      end
+    end
   end
 end
