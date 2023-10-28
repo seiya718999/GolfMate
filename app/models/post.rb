@@ -11,9 +11,9 @@ class Post < ApplicationRecord
   
   validates :body, presence: true
   
-  def get_post_image(height)
+  def get_post_image(width)
     if post_image.attached?
-      post_image.variant(resize: "x#{height}").processed
+      post_image.variant(resize: "#{width}x").processed
     end
   end
   

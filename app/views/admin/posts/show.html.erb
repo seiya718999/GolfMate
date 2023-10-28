@@ -30,8 +30,8 @@
           <hr>
           <div class="post-content">
             <p class ><%= @post.body %></p>
-            <% if @post.get_post_image(100) %>
-              <%= image_tag @post.get_post_image(100), class: 'img-fluid rounded' %>
+            <% if @post.get_post_image(400) %>
+              <%= image_tag @post.get_post_image(400), class: 'img-fluid rounded' %>
             <% end %>
           </div>
           <div class="post-actions mt-3 d-flex justify-content-end">
