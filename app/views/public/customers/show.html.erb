@@ -4,42 +4,42 @@
       <div class="card shadow" id="customer_<%= @customer.id %>">
         <div class="card-body">
           <% if current_customer && @customer.id == current_customer.id %>
-              <div class="d-flex align-items-center mb-3">
-                <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
-                <h4 class="ml-2">マイページ</h4>
-              </div>
-              <div class="d-flex flex-wrap align-items-center">
-                <% if @customer.email != "guest@example.com" %>
-                  <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-outline-info mr-2 mb-2" %>
-                <% end %>
-                <%= link_to posts_favorites_path, class: "btn btn-outline-danger mr-2 mb-2" do %>
-                  <i class="fas fa-heart"></i> いいね一覧
-                <% end %>
-                <%= link_to customer_followings_path(current_customer), class: "btn btn-outline-info mr-2 mb-2" do %>
-                  フォロー
-                <% end %>
-                <%= link_to customer_followers_path(current_customer), class: "btn btn-outline-info mr-2 mb-2" do %>
-                  フォロワー
-                <% end %>
-                <%= link_to groups_path, class: "btn btn-outline-success mr-2 mb-2" do %>
-                  <i class="fas fa-users"></i> グループ
-                <% end %>
-                <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark mr-2 mb-2" do %>
-                  <i class="fas fa-calendar-alt"></i>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="d-flex align-items-center mb-3">
-                <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
-                <h4 class="ml-2 mr-3">会員詳細</h4>
-                <span class="pl-3 follow_btn"><%= render "public/relationships/follow_btn", customer: @customer %></span>
-              </div>
-              <div class="mb-3">
-                <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark" do %>
-                  <i class="fas fa-calendar-alt"></i>
-                <% end %>
-              </div>
-            <% end %>
+            <div class="d-flex align-items-center mb-3">
+              <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
+              <h4 class="ml-2">マイページ</h4>
+            </div>
+            <div class="d-flex flex-wrap align-items-center">
+              <% if @customer.email != "guest@example.com" %>
+                <%= link_to "編集", edit_customer_path(@customer.id), class: "btn btn-outline-info mr-2 mb-2" %>
+              <% end %>
+              <%= link_to posts_favorites_path, class: "btn btn-outline-danger mr-2 mb-2" do %>
+                <i class="fas fa-heart"></i> いいね一覧
+              <% end %>
+              <%= link_to customer_followings_path(current_customer), class: "btn btn-outline-info mr-2 mb-2" do %>
+                フォロー
+              <% end %>
+              <%= link_to customer_followers_path(current_customer), class: "btn btn-outline-info mr-2 mb-2" do %>
+                フォロワー
+              <% end %>
+              <%= link_to groups_path, class: "btn btn-outline-success mr-2 mb-2" do %>
+                <i class="fas fa-users"></i> グループ
+              <% end %>
+              <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark mr-2 mb-2" do %>
+                <i class="fas fa-calendar-alt"></i>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="d-flex align-items-center mb-3">
+              <%= image_tag @customer.get_profile_image(70, 70), class: "rounded-circle border" %>
+              <h4 class="ml-2 mr-3">会員詳細</h4>
+              <span class="pl-3 follow_btn"><%= render "public/relationships/follow_btn", customer: @customer %></span>
+            </div>
+            <div class="mb-3">
+              <%= link_to customer_events_path(@customer), class: "btn btn-outline-dark" do %>
+                <i class="fas fa-calendar-alt"></i>
+              <% end %>
+            </div>
+          <% end %>
           <table class="table pt-4">
             <tr>
               <td>
@@ -49,14 +49,16 @@
                 <%= @customer.last_name %>　<%= @customer.first_name %>
               </td>
             </tr>
-            <tr>
-              <td>
-                メールアドレス
-              </td>
-              <td>
-                <%= @customer.email %>
-              </td>
-            </tr>
+            <% if current_customer && @customer.id == current_customer.id %>
+              <tr>
+                <td>
+                  メールアドレス
+                </td>
+                <td>
+                  <%= @customer.email %>
+                </td>
+              </tr>
+            <% end %>
             <tr>
               <td>
                 プレースタイル
