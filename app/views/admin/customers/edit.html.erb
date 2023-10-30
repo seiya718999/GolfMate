@@ -106,6 +106,7 @@
                   <%= f.radio_button :is_deleted, true, checked: @customer.is_deleted == true %>
                   <%= f.label :is_deleted_true, "退会" %>
                 </span>
+                <span id="status-change-warning" class="text-danger mt-2" style="display: none;">注意: 会員ステータスが変更されました。</span>
               </td>
             </tr>
             <tr>

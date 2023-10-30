@@ -16,3 +16,14 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener('turbolinks:load', function() {
+  var isDeletedRadios = document.querySelectorAll('input[name="customer[is_deleted]"]');
+  var warningElement = document.getElementById('status-change-warning');
+
+  isDeletedRadios.forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      warningElement.style.display = 'inline';
+    });
+  });
+});

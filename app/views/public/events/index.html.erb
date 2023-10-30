@@ -1,5 +1,5 @@
 <div class="container pt-5">
-  <div class="row">
+  <div class="row justify-content-center">
     <% if @customer == current_customer %>
       <div class="col-md-4">
         <%= render 'errors', event: @event %>
@@ -46,9 +46,15 @@
       <%= month_calendar events: @events do |date, events| %>
         <%= date.day %>
         <% events.each do |event| %>
-          <div>
-            <%= link_to event.schedule_i18n, customer_event_path(customer_id: @customer.id, id: event.id) %>
-          </div>
+          <% if @customer.id == current_customer.id %>
+            <div>
+              <%= link_to event.schedule_i18n, customer_event_path(customer_id: @customer.id, id: event.id) %>
+            </div>
+          <% else %>
+            <div>
+              <p class="text-muted"><%= event.schedule_i18n %></p>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>

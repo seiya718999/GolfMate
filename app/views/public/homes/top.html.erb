@@ -1,10 +1,16 @@
 <div class="container-fluid p-0">
   <div class="background-image">
-    <div class="text-overlay d-flex flex-column justify-content-center align-items-center h-100">
-      <h1>GolfMateへようこそ！</h1>
-      <p>アプリの主要な機能を体験してみましょう。</p>
-      <p><%= link_to "ゲストログイン", customers_guest_sign_in_path, class: "btn-square", method: :post %></p>
-    </div>
+    <% if customer_signed_in? %>
+      <div class="text-overlay d-flex flex-column justify-content-center align-items-center h-100">
+        <h1>GolfMate</h1>
+      </div>
+    <% else %>
+      <div class="text-overlay d-flex flex-column justify-content-center align-items-center h-100">
+        <h1>GolfMateへようこそ！</h1>
+        <p>アプリの主要な機能を体験してみましょう。</p>
+        <p><%= link_to "ゲストログイン", customers_guest_sign_in_path, class: "btn-square", method: :post %></p>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class="container">

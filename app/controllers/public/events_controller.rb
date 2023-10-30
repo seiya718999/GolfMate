@@ -40,7 +40,7 @@ class Public::EventsController < ApplicationController
   end
   
   def destroy
-    @event = Event.find(params[:id])
+    @event = current_customer.events.find(params[:id])
     if @event.destroy
       redirect_to customer_events_path(customer_id: @event.customer.id)
       flash[:notice] = "予定を削除しました"
