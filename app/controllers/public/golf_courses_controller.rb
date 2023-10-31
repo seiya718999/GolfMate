@@ -26,12 +26,8 @@ class Public::GolfCoursesController < ApplicationController
     api = GoraApiService.new(api_key)
 
     response = api.search_golf_courses(keyword, area_code, sort_option)
-    
-    if response['error'] == 'not_found'
-      flash[:alert] = '該当するゴルフ場はありません'
-      redirect_to golf_courses_path and return
-    end
-    @results = response['Items'].map { |item| item['Item'] }
+
+    @results = response['Items']&.map { |item| item['Item'] } || []
   end
   
   def show

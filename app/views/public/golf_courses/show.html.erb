@@ -22,7 +22,21 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
+          
+          <h2 class="mt-4">利用者の評価</h2>
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item"><strong>評価:</strong> <%= @golf_course_detail["Item"]["evaluation"] %> / 5.0</li>
+          </ul>
+          
+          <div class="golf-course-links mt-4">
+            <a href="<%= @golf_course_detail["Item"]["reserveCalUrl"] %>" class="btn btn-primary mr-2">予約する</a>
+            <a href="<%= @golf_course_detail["Item"]["voiceUrl"] %>" class="btn btn-secondary mr-2">利用者の声</a>
+            <a href="<%= @golf_course_detail["Item"]["layoutUrl"] %>" class="btn btn-info mr-2">コースレイアウト</a>
+            <a href="<%= @golf_course_detail["Item"]["routeMapUrl"] %>" class="btn btn-warning">アクセスマップ</a>
+          </div>
+          
+          </br>
+          
           <p class="card-text"><strong>キャプション:</strong> <%= @golf_course_detail["Item"]["golfCourseCaption"] %></p>
 
           <h2 class="mt-4">基本情報</h2>
@@ -34,17 +48,8 @@
           <h2 class="mt-4">詳細情報</h2>
           <pre class="card-text"><%= @golf_course_detail["Item"]["information"] %></pre>
 
-          <h2 class="mt-4">利用者の評価</h2>
-          <ul class="list-group list-group-flush mb-4">
-            <!-- List evaluations similarly -->
-            <li class="list-group-item"><strong>評価:</strong> <%= @golf_course_detail["Item"]["evaluation"] %> / 5.0</li>
-          </ul>
-
           <div class="golf-course-links mt-4">
             <a href="<%= @golf_course_detail["Item"]["reserveCalUrl"] %>" class="btn btn-primary mr-2">予約する</a>
-            <a href="<%= @golf_course_detail["Item"]["voiceUrl"] %>" class="btn btn-secondary mr-2">利用者の声</a>
-            <a href="<%= @golf_course_detail["Item"]["layoutUrl"] %>" class="btn btn-info mr-2">コースレイアウト</a>
-            <a href="<%= @golf_course_detail["Item"]["routeMapUrl"] %>" class="btn btn-warning">アクセスマップ</a>
           </div>
         </div>
       </div>

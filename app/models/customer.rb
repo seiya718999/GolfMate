@@ -63,12 +63,24 @@ class Customer < ApplicationRecord
   def self.search_for(content)
     # 部分一致のLIKEクエリのパターンを作成
     like_content = '%' + content + '%'
+    
+    # 苗字と名前を連結して、それに対して検索を行う条件
+    if Rails.env.development?
+        # SQLite3
+        full_name_condition = "(last_name || first_name) LIKE :like_content"
+    else
+        # MySQL
+        full_name_condition = "CONCAT(last_name, first_name) LIKE :like_content"
+    end
   
     # 各カラムで検索条件を作成
     where_clause = %w[last_name first_name last_name_kana first_name_kana].map do |column_name|
       "#{column_name} LIKE :like_content"
-    end.join(' OR ')
-    Customer.where(where_clause, like_content: like_content)
+    end
+    
+    where_clause << full_name_condition
+    final_clause = where_clause.join(' OR ')
+    Customer.where(final_clause, like_content: like_content)
   end
   
   def following?(customer)

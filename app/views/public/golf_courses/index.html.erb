@@ -27,17 +27,18 @@
           <div class="row">
             <% @results.each do |result| %>
               <div class="col-md-4 mb-4">
-                <div class="card">
-                  <img src="<%= result['golfCourseImageUrl'] %>" alt="<%= result['golfCourseName'] %>" class="card-img-top" style="max-height: 200px; width: auto;">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= result['golfCourseName'] %></h5>
-                    <p class="card-text">
-                      <strong>住所:</strong> <%= result['address'] %><br>
-                      <strong>評価:</strong> <%= result['evaluation'] %><br>
-                    </p>
-                    <%= link_to '詳細を見る', golf_course_path(result["golfCourseId"]) %>
+                <%= link_to golf_course_path(result["golfCourseId"]), class: 'card-link' do %>
+                  <div class="card">
+                    <img src="<%= result['golfCourseImageUrl'] %>" alt="<%= result['golfCourseName'] %>" class="card-img-top" style="max-height: 200px; width: auto;">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= result['golfCourseName'] %></h5>
+                      <p class="card-text">
+                        <strong>住所:</strong> <%= result['address'] %><br>
+                        <strong>評価:</strong> <%= result['evaluation'] %><br>
+                      </p>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               </div>
             <% end %>
           </div>

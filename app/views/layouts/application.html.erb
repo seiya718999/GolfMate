@@ -16,7 +16,7 @@
 
   <body>
     <header class="sticky-top">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container d-flex justify-content-between align-items-center">
 
           <%= link_to root_path, class: "mx-0" do %>
@@ -27,6 +27,9 @@
               <p class="text-secondary">ようこそ、<%= current_customer.last_name %> さん！</p>
             </div>
           <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="color: white;">
+              <span class="navbar-toggler-icon"></span>
+          </button>
 
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ml-auto">
@@ -98,6 +101,6 @@
     <div class="body_item">
       <%= yield %>
     </div>
-    
+
   </body>
 </html>
