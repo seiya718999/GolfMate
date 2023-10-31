@@ -24,9 +24,15 @@ class Public::GroupCustomersController < ApplicationController
   
   def destroy
     customer = Customer.find(params[:id])
+    group = Group.find(params[:group_id])
     group_customer = customer.group_customers.find_by(group_id: params[:group_id])
     group_customer.destroy
-    redirect_to request.referer
+    if group.customers.count.zero?
+      group.destroy
+      redirect_to groups_path
+    else
+      redirect_to request.referer
+    end
   end
   
   
