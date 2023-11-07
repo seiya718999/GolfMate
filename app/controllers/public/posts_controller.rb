@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
     sentiment_score = Language.get_data(post_params[:body])
     Rails.logger.info "Sentiment Analysis Result: #{sentiment_score.inspect}"
     
-    unless sentiment_score && sentiment_score > -0.5
+    unless sentiment_score && sentiment_score['documentSentiment']['score'] > -0.5
       flash[:alert] = '内容が不適切な可能性があります。'
       render :new
       return
