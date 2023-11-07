@@ -11,7 +11,6 @@ class Public::PostsController < ApplicationController
     @post.customer_id = current_customer.id
     sentiment_score = Language.get_data(post_params[:body])
     Rails.logger.info "Sentiment Analysis Result: #{sentiment_score.inspect}"
-    
     unless sentiment_score && sentiment_score['documentSentiment']['score'] > -0.5
       flash[:alert] = '内容が不適切な可能性があります。'
       render :new
@@ -40,6 +39,14 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
+    sentiment_score = Language.get_data(post_params[:body])
+    Rails.logger.info "Sentiment Analysis Result: #{sentiment_score.inspect}"
+    unless sentiment_score && sentiment_score['documentSentiment']['score'] > -0.5
+      flash[:alert] = '内容が不適切な可能性があります。'
+      render :new
+      return
+    end
+    
     if @post.update(post_params)
       redirect_to post_path(@post.id)
     else

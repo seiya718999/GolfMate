@@ -11,6 +11,15 @@ class Public::CommentsController < ApplicationController
     @comment = current_customer.comments.new(comment_params)
     @comment.post_id = params[:post_id]
     @post = Post.find(params[:post_id])
+    sentiment_score = Language.get_data(comment_params[:body])
+    Rails.logger.info "Sentiment Analysis Result: #{sentiment_score.inspect}"
+    
+    unless sentiment_score && sentiment_score['documentSentiment']['score'] > -0.5
+      flash[:alert] = '内容が不適切な可能性があります。'
+      render :new
+      return
+    end
+    
     if @comment.save
       flash[:notice] = "コメントしました。"
       @post.create_notification_comment!(current_customer, @comment.id)
