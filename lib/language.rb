@@ -20,7 +20,6 @@ module Language
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
 
-      # ここを修正します。エラーがあれば例外を投げ、なければ全体のレスポンスボディを返します。
       if response_body['error']
         raise response_body['error']['message']
       else
