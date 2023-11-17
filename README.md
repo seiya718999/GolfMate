@@ -23,8 +23,11 @@
 ・ゴルフについての投稿で意見交換したいとき
 ​
 ## 設計書
+・ER図　https://drive.google.com/file/d/1dFHcBYQ2fsR-tzk2V_K90gFxmhkI-xLj/view?usp=sharing  
 
-​
+・テーブル定義書　https://docs.google.com/spreadsheets/d/1oYiIcj9orBwymqTMZo78kl63LkmTVlw5/edit?usp=sharing&ouid=109562192114904209577&rtpof=true&sd=true  
+
+・アプリケーション詳細設計　https://docs.google.com/spreadsheets/d/1ImY1CAraWnFzjGGRWuSWJIV11RnEj39zRn4gVJCI7Vc/edit?usp=sharing
 ## 開発環境
 - OS：Windows(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
