@@ -46,7 +46,7 @@
       <%= month_calendar events: @events do |date, events| %>
         <%= date.day %>
         <% events.each do |event| %>
-          <% if @customer.id == current_customer.id %>
+          <% if current_customer && @customer.id == current_customer.id %>
             <div>
               <%= link_to event.schedule_i18n, customer_event_path(customer_id: @customer.id, id: event.id) %>
             </div>
