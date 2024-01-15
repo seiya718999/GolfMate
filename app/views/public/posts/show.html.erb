@@ -37,7 +37,7 @@
           </div>
           <hr>
           <div class="post-content">
-            <p class ><%= @post.body %></p>
+            <p><%= simple_format(@post.body, sanitize: true)%></p>
             <% if @post.get_post_image(400) %>
               <%= image_tag @post.get_post_image(400), class: 'img-fluid rounded' %>
             <% end %>
